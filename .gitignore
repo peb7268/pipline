@@ -1,0 +1,15 @@
+www/vendor/*
+.DS_Store
+.vagrant
+vagrant
+.idea
+scratch
+www/app/storage/cache
+www/app/storage/views/*
+!/app/storage/views/Empty
+www/public/.sass-cache
+www/node_modules
+www/vendor
+www/composer.lock
+www/chromedriver.log
+www/spec/dev_host

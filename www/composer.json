@@ -1,0 +1,36 @@
+{
+	"require": {
+		"raveren/kint": "dev-master",
+		"laravel/framework": "4.1.*",
+		"hashids/hashids": "0.3.*@dev",
+        "oneup/uploader-bundle": "dev-master"
+	},
+	"require-dev": {
+		"ccampbell/chromephp": "dev-master"
+	},
+	"autoload": {
+		"classmap": [
+			"app/commands",
+			"app/controllers",
+			"app/models",
+			"app/database/migrations",
+			"app/database/seeds",
+			"app/tests/TestCase.php"
+		],
+		"psr-4": {
+			"Pipeline\\": "app/"
+		}
+	},
+	"scripts": {
+		"pre-update-cmd": [
+			"php artisan clear-compiled"
+		],
+		"post-install-cmd": [
+			"php artisan optimize"
+		],
+		"post-update-cmd": [
+			"php artisan optimize"
+		]
+	},
+	"minimum-stability": "dev"
+}

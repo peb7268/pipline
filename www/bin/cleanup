@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+cd ..;
+sudo rm -rf Capfile  Gemfile Gemfile.lock Gruntfile.js Notes/ app/ artisan bootstrap/ composer.lock composer.json config/ dev.intengodev/ fonts/ old_market_code/ package.json  phpunit.xml protected_images/ public/ reset_db server.php  spec/ testem.yml vendor/ .git .gitignore .rvmrc .htaccess .vagrant
