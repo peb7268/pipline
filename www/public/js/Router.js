@@ -1,4 +1,4 @@
-define(['backbone'], function(Backbone){
+define(['backbone', 'app'], function(Backbone, App){
     return Router = Backbone.Router.extend({
         routes: {
             ''				: 'start',
@@ -9,7 +9,8 @@ define(['backbone'], function(Backbone){
             Backbone.history.start();
         },
         start: function(){
-            console.log('starting');
+            window.app = new App();
+            app.start();
         }
     });
 });

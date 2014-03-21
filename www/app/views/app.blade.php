@@ -2,10 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Laravel PHP Framework</title>
-        <script src="./js/vendors/requirejs/require.js" data-main="js/app.js"></script>
+        <title>Pipeline | Streamlined Task & Client Management</title>
+        <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
         <div id="wrapper"></div>
+        <script src="./js/vendors/requirejs/require.js" data-main="js/main.js"></script>
     </body>
 </html>
