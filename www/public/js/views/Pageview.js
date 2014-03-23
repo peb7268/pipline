@@ -1,4 +1,4 @@
-define(['backbone', 'text!/public/js/templates/partials/list.html', 'text!/public/js/templates/partials/content.html'], function(Backbone, listTpl, agendaTpl){
+define(['backbone', 'text!templates/partials/list.html', 'text!templates/partials/content.html'], function(Backbone, listTpl, agendaTpl){
     window.Agenda = {
         apointment: [],
         contact: [],

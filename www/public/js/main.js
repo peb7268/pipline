@@ -4,7 +4,7 @@ require.config({
         jquery: 'vendors/jquery/dist/jquery',
         underscore: 'vendors/underscore/underscore',
         backbone: 'vendors/backbone/backbone',
-        templates: '../templates'
+        templates: 'templates/'
     },
     shim: {
         'jquery': {

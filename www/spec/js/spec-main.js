@@ -7,7 +7,7 @@ require.config({
         jquery: 'vendors/jquery/dist/jquery',
         underscore: 'vendors/underscore/underscore',
         backbone: 'vendors/backbone/backbone',
-        templates: '../templates',
+        templates: 'templates/',
         spec: "../../spec",
         jasmine: 'vendors/jasmine/lib/jasmine-2.0.0/jasmine',
         'jasmine-html': 'vendors/jasmine/lib/jasmine-2.0.0/jasmine-html',
