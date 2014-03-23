@@ -14,14 +14,10 @@ launchers:
 
 frameword: jasmine
 src_files:
-#- public/index.html
 - public/js/**/*.js
-#- public/templates/*.html
-#- spec/*.rb
-- spec/unit_tests/*.js
+- spec/**/*.js
 - app/tests/*.php
 - app/controllers/*.php
-#- app/**/*.php
 
 #test_page: "spec/SpecRunner.html"
 test_page: "public/js/vendors/jasmine/SpecRunner.html"
