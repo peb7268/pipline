@@ -11,25 +11,27 @@ launchers:
         command: "phpunit app/tests/SurveyCategoryTest.php"
     dash:
         command: "phpunit --testsuite DashTests"
+
+frameword: jasmine
 src_files:
 #- public/index.html
-#- public/js/**/*.js
+- public/js/**/*.js
 #- public/templates/*.html
 #- spec/*.rb
-#- spec/unit_tests/*.js
+- spec/unit_tests/*.js
 - app/tests/*.php
 - app/controllers/*.php
 #- app/**/*.php
 
-test_page: "spec/SpecRunner.html"
+#test_page: "spec/SpecRunner.html"
+test_page: "public/js/vendors/jasmine/SpecRunner.html"
 
 launch_in_dev:
 #- headless
 #- phantomjs
 #- phpunit
 #- browser
-- dash
-
+- Chrome
 
 #To execute a specific suite in phpunit do: phpunit--testsuite="Integration"
 #you can even make a custom launcher for that to test all for instance vs integration vs acceptance tests.
