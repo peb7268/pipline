@@ -7,7 +7,7 @@ define(function(require){
         });
 
         it("pageview should be an object", function(){
-            expect(typeof pageview).toBe('bject');
+            expect(typeof pageview).toBe('object');
         });
 
         it("should be an instance of Pageview", function(){

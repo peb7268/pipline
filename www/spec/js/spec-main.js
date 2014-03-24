@@ -1,7 +1,7 @@
 //http://stackoverflow.com/questions/19240302/does-jasmine-2-0-really-not-work-with-require-js
 require.config({
     baseUrl: '/../../public/js',
-    urlArgs: 'cb=' + Math.random(),
+
     waitSeconds: 60,
     paths: {
         jquery: 'vendors/jquery/dist/jquery',
@@ -48,7 +48,7 @@ require.config({
 var specs = ['../../../../spec/js/views/PageviewSpec.js'];
 
 //Boot the tests up
-require(['jasmine-boot', 'jasmine-jquery', 'sinon'], function(){
+require(['jasmine-boot', 'jasmine-jquery', 'sinon', '/testem.js'], function(){
     require(specs, function () {
         // Initialize the HTML Reporter and execute the environment (setup by `boot.js`)
         window.onload();
