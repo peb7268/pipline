@@ -48,7 +48,7 @@ require.config({
 var specs = ['../../../../spec/js/views/PageviewSpec.js'];
 
 //Boot the tests up
-require(['jasmine-boot', 'jasmine-jquery', 'sinon'], function(){
+require(['sinon'], function(){
     require(specs, function () {
         // Initialize the HTML Reporter and execute the environment (setup by `boot.js`)
         window.onload();
