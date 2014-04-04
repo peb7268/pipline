@@ -12,7 +12,6 @@ launchers:
     dash:
         command: "phpunit --testsuite DashTests"
 
-framework: jasmine
 src_files:
 - public/js/**/*.js
 - spec/**/*.js

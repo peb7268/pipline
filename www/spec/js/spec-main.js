@@ -1,4 +1,5 @@
 //http://stackoverflow.com/questions/19240302/does-jasmine-2-0-really-not-work-with-require-js
+//Run testem from local actual computer, not vagrant vm
 require.config({
     baseUrl: '/../../public/js',
 
@@ -34,23 +35,27 @@ require.config({
             exports: 'jasmine'
         },
         'jasmine-boot':{
-            deps: ['jasmine', 'jasmine-html', 'jquery'],
+            deps: ['jasmine', 'jasmine-html', 'jquery', 'jasmine-jquery'],
             exports: 'jasmine'
-        },
-        'jasmine-jquery':{
-            deps: ['jasmine-boot'],
-            exports: 'jasmine-jquery'
         }
     }
 });
+
+//Not actually using the jasmine shims above but they're there anyway for refrence.
 
 //Include spec files here...
 var specs = ['../../../../spec/js/views/PageviewSpec.js'];
 
 //Boot the tests up
-require(['jasmine-boot', 'jasmine-jquery', 'sinon', '/testem.js'], function(){
-    require(specs, function () {
-        // Initialize the HTML Reporter and execute the environment (setup by `boot.js`)
-        window.onload();
+require(['backbone', 'sinon'], function(){
+    $('document').ready(function($){
+        require(specs, function () {
+            // Initialize the HTML Reporter and execute the environment (setup by `boot.js`)
+            //Had to modify jasmine boot.js to bind htmlReporter and env to the window and make them global.
+            //That fixed the double booting status bar issue
+            htmlReporter.initialize();
+            env.execute();
+            window.onload();
+        });
     });
 });

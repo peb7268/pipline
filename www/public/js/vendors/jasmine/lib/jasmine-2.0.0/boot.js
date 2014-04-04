@@ -25,7 +25,7 @@
     /**
      * Create the Jasmine environment. This is used to run all specs in a project.
      */
-    var env = jasmine.getEnv();
+    window.env = jasmine.getEnv();
 
     /**
      * ## The Global Interface
@@ -121,7 +121,7 @@
      * ## Reporters
      * The `HtmlReporter` builds all of the HTML UI for the runner page. This reporter paints the dots, stars, and x's for specs, as well as all spec names and all failures (if any).
      */
-    var htmlReporter = new jasmine.HtmlReporter({
+    window.htmlReporter = new jasmine.HtmlReporter({
         env: env,
         onRaiseExceptionsClick: function() { queryString.setParam("catch", !env.catchingExceptions()); },
         getContainer: function() { return document.body; },
@@ -166,8 +166,8 @@
         if (currentWindowOnload) {
             currentWindowOnload();
         }
-        htmlReporter.initialize();
-        env.execute();
+        //htmlReporter.initialize();
+        //env.execute();
     };
 
     /**
