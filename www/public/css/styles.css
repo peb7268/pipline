@@ -23,18 +23,29 @@ body {
 ul { list-style: none; margin: 0; padding: 0; }
 ul li { margin: 0; padding: 0; }
 
-#agenda { float: left; width: 30%; min-height: 450px; }
-#agenda #daySelector { position: relative; width: 92%; margin: 0 0 0 22px;
+#agenda { float: left; width: 30%; min-height: 450px; position: relative; overflow: hidden; }
+#agenda #daySelector {
+    position: relative;
+    width: 92%;
+    margin: 0 0 0 22px;
     border-top: 1px solid #999;
     padding: 3px 0;
     border-bottom: 1px solid #999;
+    margin: 0 auto 40px auto;
 }
 #agenda #daySelector ul li { color: #999; margin: 0; padding: 0; }
 #agenda #daySelector ul li.prev { position: absolute; left: 0; top: 4px; font-size: 13pt; }
 #agenda #daySelector ul li.date { text-align: center; color: #777; }
 #agenda #daySelector ul li.next { position: absolute; right: 0; top: 7px; font-size: 14px; }
 
-ul#agenda li { display: block; padding: 4px 20px; box-sizing: border-box; position: relative; line-height: 1.4; }
+ul#agenda > li {
+    display: block;
+    padding: 4px 20px;
+    box-sizing: border-box;
+    position: relative;
+    line-height: 1.4;
+    width: 410px;
+}
 ul#agenda li a {
     display: block;
     width: 25px;
@@ -49,7 +60,7 @@ ul#agenda li a {
     line-height: 1;
     border-radius: 25px;
 }
-ul#agenda li:nth-child(2) input { width: 100%; }
+ul#agenda li:nth-child(2) input { width: 100%;}
 ul#agenda li.completed { color: #ccc; }
 ul#agenda li.completed span {
     height: 15px;
@@ -81,6 +92,12 @@ ul#agenda > li:first-child input {
     font-size: 12pt;
     border-radius: 2px;
     border: 1px solid #eee;
+}
+ul#agenda > li:nth-child(2) {
+    position: absolute;
+    width: 420px;
+    top: 30px;
+    left: -3px;
 }
 #agenda ul#controls {
     margin: -2px 0 0 0;

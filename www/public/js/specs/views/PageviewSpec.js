@@ -31,11 +31,15 @@ define(function(require){
                 expect(this.pageview.el.nodeName).toEqual('DIV');
                 expect(this.pageview.el.id).toEqual('wrapper');
             });
-        });
 
-        describe("Pageview Rendering", function(){
-           //http://tinnedfruit.com/2011/04/26/testing-backbone-apps-with-jasmine-sinon-3.html
+            it('should initialize correctly', function(){
+               spyOn(this.pageview, 'initialize').and.callThrough();
+               this.pageview.initialize();
 
+               expect(this.pageview.initialize.calls.count()).toEqual(1);
+               expect(typeof this.pageview.calendarview).toBe('object');
+               expect(typeof this.pageview.agendaview).toBe('object');
+            });
         });
 
         afterEach(function(){

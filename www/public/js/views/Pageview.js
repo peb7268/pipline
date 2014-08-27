@@ -1,182 +1,179 @@
-define(['backbone', 'text!templates/partials/list.html', 'text!templates/partials/content.html', 'text!templates/calendarTpl.html'], function(Backbone, listTpl, agendaTpl, calendarTpl){
-    window.Agenda = {
-        apointment: [],
-        contact: [],
-        todo: [],
-        project: []
-    };
-    Agenda.tmp = {};
+define([
+    'backbone',
+    'text!templates/content.html',
+    'text!templates/calendarTpl.html',
+    'views/CalendarView',
+    'views/AgendaView',
+    'services/CalendarService'
+    ],
+    function(Backbone, content, calendarTpl, CalendarView, AgendaView, CalendarService){
+        window.Agenda = {
+            apointment: [],
+            contact: [],
+            todo: [],
+            project: []
+        };
+        Agenda.tmp = {};
+        var that,
+            calendar;
 
-    //Mock up the cal object
-    window.calendar = {
-        day_names: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        prev: {},
-        current: {
-            days_of_month: _.range(1, 30 + 1),
-            today: 3,
-            selected_day: 3,
-            day_name: 'Thursday',
-            year: 2014
-        },
-        next: {},
+        var Pageview = Backbone.View.extend({
+            el: '#wrapper',
+            tag: 'ul',
+            events: {
+                "keyup #agenda li:nth-child(2) input" : 'showControls',
+                "keyup #content .active .details": 'captureDetails',
+                "click #agenda li a.remove": 'inactivateElem',
+                "click #clearCompleted": 'clearCompleted',
+                "click .save": 'saveItem',
+                "click .day" : 'selectDay',
+                "click #daySelector .date": 'resetDay',
+                "click #daySelector .next": 'incrementDay'
+            },
 
-        isToday: function(day){
-            return (day == calendar.current.today) ? 'today' : '';
-        },
+            initialize: function(){
+                that = this;
+                this.calendarview = new CalendarView({});
+                window.d = new Date();
+                calendar = this.calendar = new CalendarService();
+                this.agendaview   = new AgendaView({});
 
-        lookupNameOfDay: function(day){
-            return day % calendar.day_names.length;
-        }
-    };
+                calendar.setDay(d.getDay());
+                calendar.setDaysInMonth();
+                calendar.setSelectedDay(d.getDay() - 1);
+            },
 
-
-    var Pageview = Backbone.View.extend({
-        el: '#wrapper',
-        tag: 'ul',
-        events: {
-            "keyup #agenda li:nth-child(2) input" : 'showControls',
-            "keyup #content .active .details": 'captureDetails',
-            "click #agenda li a.remove": 'inactivateElem',
-            "click #clearCompleted": 'clearCompleted',
-            "click .save": 'saveItem'
-        },
-
-        render: function(){
-            var listTemplate    = _.template(listTpl, {});
-            var agendaTemplate  = _.template(agendaTpl, {});
-            var calTemplate     =  _.template(calendarTpl, window.calendar);
+            render: function(){
+                var listTemplate    = _.template(content, {});
+                var calTemplate     =  _.template(calendarTpl, window.calendar);
 
 
-            this.$el.append(listTemplate);
-            this.$el.append(agendaTemplate);
-            this.$el.find('#calWrapper').append(calTemplate);
-        },
+                this.$el.prepend(content);
+                this.$el.find('#calWrapper').append(calTemplate);
+            },
 
-        captureTarget: function(event){
-            return $(event.target).attr('href');
-        },
+            captureTarget: function(event){
+                return $(event.target).attr('href');
+            },
 
-        showControls: function(e) {
-            var that = this;
-            e.preventDefault();
-            if(e.which == 13) $('#controls').slideDown(100);
-            this.$el.find('#controls').on('click', function(event){
-                event.preventDefault();
-                var id = that.captureTarget(event);
-                that.populateView(event, id);
-                that.animate(id);
-            });
-        },
-
-        captureDetails: function(e){
-            e.preventDefault();
-            if(e.which == 13 && event.shiftKey){ this.saveItem(e); }
-        },
-
-        saveItem: function(e){
-            e.preventDefault();
-            var $active = $('.active');
-            this.attatchToList($('#agenda'));
-            this.animateOut($active);
-            $('#addAnItem').focus();
-            this.clearPrevious($active);
-            //put actual saving logic here
-        },
-
-        clearCompleted: function(e){
-            e.preventDefault();
-            var $completes = $('.completed');
-            $.each($completes, function(idx, elem){
-                $(elem).slideUp(100, function(){
-                    $(this).remove();
+            showControls: function(e) {
+                var that = this;
+                e.preventDefault();
+                if(e.which == 13) $('#controls').slideDown(100, function(){
+                    $(this).find('li:first a').focus();
                 });
-            });
-            $('#clearCompleted').fadeOut(100, function(){
+                this.$el.find('#controls').on('click', function(event){
+                    event.preventDefault();
+                    var id = that.captureTarget(event);
+                    that.populateView(event, id);
+                    that.animate(id);
+                });
+            },
+
+            captureDetails: function(e){
+                e.preventDefault();
+                if(e.which == 13 && event.shiftKey){ this.saveItem(e); }
+            },
+
+            saveItem: function(e){
+                e.preventDefault();
+                var $active = $('.active');
+                agendaview.attatchToList($('#agenda'));
+                this.animateOut($active);
                 $('#addAnItem').focus();
-            });
-        },
+                this.clearPrevious($active);
+                //Slide back in calendar
+                this.animateIn('#calWrapper');
+                //put actual saving logic here
+            },
 
-        inactivateElem: function(e){
-            e.preventDefault();
-            var $parent = $(e.target).parent();
-            $parent.addClass('completed').append($('<span />'));
-
-            $parent.find('span').animate({
-                width: '90%'
-            });
-
-            $('#clearCompleted').show().css('display', 'block');
-        },
-
-        attatchToList: function ($list){
-            var elem = this.buildDataFromContent();
-            var li 	  = '<li>' + elem.value + '<a href="#' + elem.name + '" class="remove">x</a></li>';
-            $list.append(li)
-        },
-
-        buildDataFromContent: function(){
-            var inputs = $('input, textarea', '#content .active');
-            $.each(inputs, function(idx, elem){
-                var name = $(elem).attr('id');
-                var val  = $(elem).val();
-                var kind = Agenda.tmp.kind = $(this).parent().parent().attr('id');
-
-                Agenda[kind].push({
-                    name: name,
-                    value: val
+            clearCompleted: function(e){
+                e.preventDefault();
+                var $completes = $('.completed');
+                $.each($completes, function(idx, elem){
+                    $(elem).slideUp(100, function(){
+                        $(this).remove();
+                    });
                 });
-            });
+                $('#clearCompleted').fadeOut(100, function(){
+                    $('#addAnItem').focus();
+                });
+            },
 
-            var kind = Agenda.tmp.kind;
+            inactivateElem: function(e){
+                e.preventDefault();
+                var $parent = $(e.target).parent();
+                $parent.addClass('completed').append($('<span />'));
 
-            return (Agenda[kind].length > 1) ? Agenda[kind][Agenda[kind].length - 2] : Agenda[kind][Agenda[kind][0]];
-        },
+                $parent.find('span').animate({
+                    width: '90%'
+                });
 
-        populateView: function(event, id){
-            var $input = $('#agenda li:nth-child(2)').find('input[type="text"]');
-            var val    = String($input[0].value);
-            $(id).find('input#apt_name').val(val);
-        },
+                $('#clearCompleted').show().css('display', 'block');
+            },
 
-        animate: function(id){
-            var $active = $('.active', '#content');
-            this.animateOut($active);
-            this.animateIn(id);
-        },
+            /**
+             * Prepopulates the details field in the content pane.
+             * @param event
+             * @param id
+             */
+            populateView: function(event, id){
+                var $input = $('#agenda li:nth-child(2)').find('input[type="text"]');
+                var val    = String($input[0].value);
+                $(id).find('input#apt_name').val(val);
+            },
 
-        animateIn: function(id){
-            $('#controls').slideUp(100, function(){
-                $('#agenda li:first').find('input[type="text"]').val('');
-            });
+            animate: function(id){
+                var $active = $('.active', '#content');
+                this.animateOut($active);
+                this.animateIn(id);
+            },
 
-            $(id).animate({
-                'left': 0
-            }, 100, function(){
-                $(this).addClass('active');
-                $('.details', id).show().focus();
-            });
-        },
+            animateIn: function(id){
+                $('#controls').slideUp(100, function(){
+                    $('#agenda li:first').find('input[type="text"]').val('');
+                });
 
-        animateOut: function($active){
-            var $input = $('#agenda li:first').find('input[type="text"]');
-            $active.removeClass('active').animate({
-                'left': '105%'
-            },{
-                duration: 100,
-                queue: false,
-                complete: function(){
-                    $active.removeAttr('style');
-                    $active.removeAttr('class');
-                }
-            });
-        },
+                $(id).animate({
+                    'left': 0
+                }, 100, function(){
+                    $(this).addClass('active');
+                    $('.details', id).show().focus();
+                });
+            },
 
-        clearPrevious: function($active){
-            $active.find('textarea, input').each(function(i, elem){
-                $(elem).prop('');
-                $(elem).val('');
-            });
-        },
+            animateOut: function($active){
+                var $input = $('#agenda li:first').find('input[type="text"]');
+                $active.removeClass('active').animate({
+                    'left': '105%'
+                },{
+                    duration: 100,
+                    queue: false,
+                    complete: function(){
+                        $active.removeAttr('style');
+                        $active.removeAttr('class');
+                    }
+                });
+            },
+
+            clearPrevious: function($active){
+                $active.find('textarea, input').each(function(i, elem){
+                    $(elem).prop('');
+                    $(elem).val('');
+                });
+            },
+
+            selectDay: function(e){
+                calendar.selectDay(e);
+            },
+
+            incrementDay: function(e){
+                calendar.incrementDay(calendar.current.selected_day);
+            },
+
+            resetDay: function(e){
+                calendar.resetDay();
+            }
     });
 
     return Pageview;

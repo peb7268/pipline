@@ -44,10 +44,10 @@ require.config({
 //Not actually using the jasmine shims above but they're there anyway for refrence.
 
 //Include spec files here...
-var specs = ['../../../../spec/js/views/PageviewSpec.js'];
+var specs = ['../../specs/views/PageviewSpec.js'];
 
 //Boot the tests up
-require(['backbone', 'sinon'], function(){
+require(['jquery', 'sinon'], function(){
     $('document').ready(function($){
         require(specs, function () {
             // Initialize the HTML Reporter and execute the environment (setup by `boot.js`)

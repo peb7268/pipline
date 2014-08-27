@@ -1,5 +1,4 @@
-<?php
-use Illuminate\Routing\Controller;  //if there are issues turn this off
+<?php use Illuminate\Routing\Controller;
 
 class BaseController extends Controller
 {
