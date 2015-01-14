@@ -168,6 +168,7 @@ define([
             },
 
             incrementDay: function(e){
+                debugger;
                 calendar.incrementDay(calendar.current.selected_day);
             },
 

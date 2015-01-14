@@ -13,8 +13,11 @@
 
 Route::get('/', function()
 {
-    return View::make('app');
+    return View::make('layouts.app');
 });
+
+Route::get('/contact', 'AppController@contactForm');
+Route::post('/processForm', 'AppController@processForm');
 
 Route::group(array('prefix' => 'api/v1/'), function(){
     Route::resource('appointment', 'AppointmentController');

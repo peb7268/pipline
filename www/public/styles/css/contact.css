@@ -1,0 +1,40 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+.headline { font-family: 'Open Sans', sans-serif; }
+
+.wrapper {
+	width: 960px;
+	margin: 100px auto 20px;
+}
+
+.contact_form {}
+.contact_form input { 
+	padding: 7px 5px; 
+	border: 1px solid #ccc; 
+	display: block;
+	width: 250px;
+	margin: 5px 0;
+}
+.contact_form input:nth-child(1) { }
+.contact_form input:nth-child(2) {}
+.contact_form input:nth-child(3) { 
+	background-color: #e6e6e6;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(230, 230, 230)), to(rgb(204, 204, 198)));
+	background-image: -webkit-linear-gradient(top, rgb(230, 230, 230), rgb(204, 204, 198));
+	background-image: -moz-linear-gradient(top, rgb(230, 230, 230), rgb(204, 204, 198));
+	background-image: -o-linear-gradient(top, rgb(230, 230, 230), rgb(204, 204, 198));
+	background-image: -ms-linear-gradient(top, rgb(230, 230, 230), rgb(204, 204, 198));
+	background-image: linear-gradient(top, rgb(230, 230, 230), rgb(204, 204, 198));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#e6e6e6', EndColorStr='#ccccc6');
+	width: 262px;
+	display: block;
+	text-align: center;
+	box-sizing: border-box;
+}
+.contact_form input:nth-child(3):hover {
+	background: #777;
+	color: #fff;
+}
+
+#message { display: none; padding: 10px; width: 240px;}
+#message.success { color: rgb(88, 201, 88); background: rgb(186, 238, 186); border: 1px solid rgb(47, 100, 47);}
+#message.fail { color: rgb(196, 30, 30); background: rgb(250, 203, 203); border: 1px solid rgb(136, 45, 45); }
