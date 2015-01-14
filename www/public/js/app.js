@@ -1,16 +1,11 @@
-define(['views/Pageview'], function(Pageview){
-    var App = function(){
-        this.Views  = {};
-        this.Models = {};
-        this.Views.Pageview = Pageview;
-        this.instances = { views: {} };
-        this.start  = function(){
-            $('document').ready(function(){
-                var pageview = new Pageview({});
-                pageview.render();
-            });
-        }
-    };
+'use strict';
 
-    return App;
-});
+var angular         = require('angular');
+require('angular-route');
+require('angular-animate');
+
+var app = angular.module('App', ['ngAnimate', 'ngRoute']);
+
+// one require statement per sub directory instead of one per file
+//require('./service');
+//require('./controller');
