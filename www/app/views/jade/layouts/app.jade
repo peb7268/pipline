@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang="en", ng-app)
     head
         title="Laravel PHP Framework"
         style
@@ -10,4 +10,5 @@ html(lang="en")
             h1 { font-size: 32px; margin: 16px 0 0 0; }
         script(src="js/dist/app.js")
     body
-        |@yield('body')
+        #App(ng-view)
+            |@yield('body')

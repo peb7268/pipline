@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
   <head>
     <title>Laravel PHP Framework</title>
     <style>@import url(//fonts.googleapis.com/css?family=Lato:700);
@@ -9,5 +9,9 @@
     </style>
     <script src="js/dist/app.js"></script>
   </head>
-  <body>@yield('body')</body>
+  <body>
+    <div id="App" ng-view>
+        @yield('body')
+    </div>
+  </body>
 </html>
