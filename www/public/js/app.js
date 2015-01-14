@@ -1,11 +1,21 @@
 'use strict';
 
-var angular         = require('angular');
+require('angular');
 require('angular-route');
 require('angular-animate');
+require('angular-resource');
 
-var app = angular.module('App', ['ngAnimate', 'ngRoute']);
+var controllers = require('./controllers/AppController.js');
 
-// one require statement per sub directory instead of one per file
-//require('./service');
-//require('./controller');
+var App = angular.module('App', ['ngRoute', 'AppController']);
+
+App.config(['$routeProvider'], function($routeProvider){
+    $routeProvider.
+        when('/hello', {
+            templateUrl: '../views/pages/hello',
+            controller: 'AppController'
+        }).otherwise({
+            redirectTo: '/hello'
+        });
+});
+

@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-    return View::make('public.hello');
+    return View::make('public.layouts.app');
 });
 
 Route::get('/contact', 'AppController@contactForm');
