@@ -1,4 +1,7 @@
-window.App = angular.module('App', ['ngRoute', 'appControllers']).config(['$routeProvider',
+require('./controllers/AppController.js');
+
+var App = angular.module('App', ['ngRoute', 'appControllers']).config(['$routeProvider',
+
 function($routeProvider){
     $routeProvider.
     when('/hello', {
@@ -18,3 +21,4 @@ function($routeProvider){
     });
 }]);
 
+module.exports = App;

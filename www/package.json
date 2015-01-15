@@ -9,29 +9,16 @@
       "Paul Barrick"
     ]
   },
-  "browser": {
-    "angular": "./public/js/vendors/angularjs/angular-index.js",
-    "angular-route": "./public/js/vendors/angular-route/angular-route.js",
-    "angular-animate": "./public/js/vendors/angular-animate/angular-animate.js"
-  },
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-livereload": "^2.1.0",
     "gulp-notify": "^1.4.2",
     "gulp-phpunit": "^0.6.3",
-    "gulp-plumber": "^0.6.4",
-    "gulp-rename": "^1.2.0",
     "gulp-sass": "1.0.*",
+    "gulp-ruby-sass": "^0.7.1",
     "sinon": "^1.10.3",
     "laravel-elixir": "^0.8.0",
-    "laravel-elixir-jade": "^0.1.4-alpha",
-    "browserify": "~7.0.3",
-    "watchify": "^2.2.1"
+    "laravel-elixir-jade": "^0.1.4-alpha"
   },
-  "dependencies": {
-    "angular": "^1.3.8",
-    "browserify": "^7.0.3",
-    "gulp": "^3.8.8",
-    "gulp-ruby-sass": "^0.7.1"
-  }
+  "dependencies": {}
 }

@@ -14,3 +14,5 @@ appControllers.controller('RegisterCtrl', ['$scope',
     function($scope){
         console.log('RegisterCtrl');
 }]);
+
+module.exports = appControllers;

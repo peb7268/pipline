@@ -3,7 +3,9 @@ Gruntfile.js
 /app/storage/views/*
 !/app/storage/views/Empty
 /public/.sass-cache
+node_modules
 /node_modules
+./public/node_modules
 /vendor
 /composer.lock
 /chromedriver.log
