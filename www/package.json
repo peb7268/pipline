@@ -18,7 +18,10 @@
     "gulp-ruby-sass": "^0.7.1",
     "sinon": "^1.10.3",
     "laravel-elixir": "^0.8.0",
-    "laravel-elixir-jade": "^0.1.4-alpha"
+    "laravel-elixir-jade": "^0.1.4-alpha",
+    "gulp-jade": "^0.10.0",
+    "gulp-plumber": "^0.6.6",
+    "gulp-rename": "^1.2.0"
   },
   "dependencies": {}
 }

@@ -1,4 +1,3 @@
-Gruntfile.js
 /app/storage/cache
 /app/storage/views/*
 !/app/storage/views/Empty
@@ -9,9 +8,4 @@ node_modules
 /vendor
 /composer.lock
 /chromedriver.log
-/spec/dev_host
 
-*.rdb
-.vagrant
-dump.rdb
-intengodev

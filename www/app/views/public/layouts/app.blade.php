@@ -13,7 +13,6 @@
 
     <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-route/angular-route.js"></script>
-    {{--<script src="./js/controllers/AppController.js"></script>--}}
     <script src="./js/dist/app.js"></script>
   </body>
 </html>
