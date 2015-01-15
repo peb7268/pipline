@@ -1,0 +1,21 @@
+{
+    "name": "Intengo",
+    "description": "Stock survey game",
+    "version": "1.0.0",
+    "homepage": "http://gointengo.com",
+    "private": true,
+    "author": {
+        "name": [
+            "Paul Barrick"
+        ]
+    },
+    "devDependencies": {
+        "browserify": "~7.0.3",
+        "watchify": "^2.2.1"
+    },
+    "dependencies": {
+        "angular": "^1.3.9",
+        "angular-route": "^1.3.9",
+        "gulp": "^3.8.8"
+    }
+}
