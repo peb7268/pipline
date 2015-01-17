@@ -1,14 +1,14 @@
 doctype html
-html(lang="en", ng-app)
+html(lang="en", ng-app="App")
     head
         title="Laravel PHP Framework"
-        style
-            @import url(//fonts.googleapis.com/css?family=Lato:700);
-            body { margin: 0px; font-family: 'Lato', sans-serif; text-align: center; color: #999; }
-            .welcome { width: 300px; height: 200px; position: absolute; left: 50%; top: 50%; margin-left: -150px; margin-top: -100px; }
-            a, a:visited { text-decoration:none; }
-            h1 { font-size: 32px; margin: 16px 0 0 0; }
-        script(src="js/dist/app.js")
+        link(href="./css/styles.css", rel="stylesheet")
+        link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", rel="stylesheet")
+
     body
         #App(ng-view)
             |@yield('body')
+
+        script(src="./node_modules/angular/angular.js")
+        script(src="./node_modules/angular-route/angular-route.js")
+        script(src="./js/dist/app.js")

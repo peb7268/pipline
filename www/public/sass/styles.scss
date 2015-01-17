@@ -1,0 +1,235 @@
+@import url(//fonts.googleapis.com/css?family=Lato:700);
+body { margin: 0px; font-family: 'Lato', sans-serif; text-align: center; color: #999; }
+.welcome { width: 300px; height: 200px; position: absolute; left: 50%; top: 50%; margin-left: -150px; margin-top: -100px; }
+a, a:visited { text-decoration:none; }
+h1 { font-size: 32px; margin: 16px 0 0 0; }
+
+body {
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #dddddd 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffffff 0%,#dddddd 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffffff 0%,#dddddd 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ffffff 0%,#dddddd 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+  background-repeat: no-repeat;
+  display: block;
+  width: 100%;
+  min-height: 900px;
+  margin: 0;
+  padding: 0;
+  font-size: 11pt;
+  font-family:  helvetica;
+}
+#wrapper {
+  width: 98%;
+  margin: 50px auto 0;
+}
+ul { list-style: none; margin: 0; padding: 0; }
+ul li { margin: 0; padding: 0; }
+
+#agenda { float: left; width: 30%; min-height: 450px; position: relative; overflow: hidden; }
+#agenda #daySelector {
+  position: relative;
+  width: 92%;
+  margin: 0 0 0 22px;
+  border-top: 1px solid #999;
+  padding: 3px 0;
+  border-bottom: 1px solid #999;
+  margin: 0 auto 40px auto;
+}
+#agenda #daySelector ul li { color: #999; margin: 0; padding: 0; }
+#agenda #daySelector ul li.prev { position: absolute; left: 0; top: 4px; font-size: 13pt; }
+#agenda #daySelector ul li.date { text-align: center; color: #777; }
+#agenda #daySelector ul li.next { position: absolute; right: 0; top: 7px; font-size: 14px; }
+
+ul#agenda > li {
+  display: block;
+  padding: 4px 20px;
+  box-sizing: border-box;
+  position: relative;
+  line-height: 1.4;
+  width: 410px;
+}
+ul#agenda li a {
+  display: block;
+  width: 25px;
+  color: #fff;
+  background: #333;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  padding: 0 0 2px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1;
+  border-radius: 25px;
+}
+ul#agenda li:nth-child(2) input { width: 100%;}
+ul#agenda li.completed { color: #ccc; }
+ul#agenda li.completed span {
+  height: 15px;
+  display: block;
+  width: 0;
+  position: absolute;
+  top: 0;
+  left: 8px;
+  border-bottom: 1px solid #ccc;
+}
+ul#agenda > li:first-child {
+  padding: 0;
+}
+ul#agenda > li:first-child input {
+  border: 0;
+  background: #f9fcf7; /* Old browsers */
+  background: -moz-linear-gradient(top,  #f9fcf7 0%, #eeeeee 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f9fcf7), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #f9fcf7 0%,#eeeeee 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #f9fcf7 0%,#eeeeee 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #f9fcf7 0%,#eeeeee 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #f9fcf7 0%,#eeeeee 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fcf7', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
+  background-repeat: no-repeat;
+  color: #777;
+  padding: 7px;
+  display: block;
+  width: 100%;
+  font-size: 12pt;
+  border-radius: 2px;
+  border: 1px solid #eee;
+}
+ul#agenda > li:nth-child(2) {
+  position: absolute;
+  width: 420px;
+  top: 30px;
+  left: -3px;
+}
+#agenda ul#controls {
+  margin: -2px 0 0 0;
+  width: 80%;
+  margin: -3px auto 0;
+  overflow: hidden;
+  padding: 4px 4px 4px 55px;
+  box-sizing: border-box;
+  border-radius: 0 0 4px 4px;
+  position: relative;
+  /*z-index: -1;*/
+  background: #555555; /* Old browsers */
+  background: -moz-linear-gradient(top,  #555555 0%, #333333 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#555555), color-stop(100%,#333333)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #555555 0%,#333333 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #555555 0%,#333333 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #555555 0%,#333333 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #555555 0%,#333333 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
+  border: 1px solid #000;
+  display: none;
+}
+#agenda ul#controls li {
+  float: left;
+  margin-right: 7px;
+  padding: 0;
+}
+#agenda ul#controls li a {
+  text-decoration: none;
+  color: #ddd;
+  font-size: 9pt;
+  background: initial;
+  width: initial;
+  position: static;
+  left: initial;
+  top: initial;
+}
+
+#content { float: left; width: 68%; height: 850px; margin-right: 1%; overflow: hidden; position: relative; }
+#content > li {
+  width: 99.8%;
+  background: #ddd;
+  border: 1px solid #ccc;
+  height: 500px;
+  margin-bottom: 10px;
+  position: absolute;
+  left: 100%;
+}
+
+#content #apointment {}
+#content #apointment p {
+  margin: 5px 0 0 10px;
+}
+#content #apointment textarea, input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  font-size: 11pt;
+}
+
+#clearCompleted {
+  color: #333;
+  text-align: right;
+  text-decoration: none;
+  display: none;
+}
+
+.save {
+  font-size: 12pt;
+  color: #fff;
+  background-color: #00aaff;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 170, 255)), to(rgb(0, 138, 207)));
+  background-image: -webkit-linear-gradient(top, rgb(0, 170, 255), rgb(0, 138, 207));
+  background-image: -moz-linear-gradient(top, rgb(0, 170, 255), rgb(0, 138, 207));
+  background-image: -o-linear-gradient(top, rgb(0, 170, 255), rgb(0, 138, 207));
+  background-image: -ms-linear-gradient(top, rgb(0, 170, 255), rgb(0, 138, 207));
+  background-image: linear-gradient(top, rgb(0, 170, 255), rgb(0, 138, 207));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#00aaff', EndColorStr='#008acf');
+  border: 1px solid #00557f;
+  text-decoration: none;
+  padding: 5px 15px;
+  border-radius: 2px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+#content #calWrapper {
+  position: absolute;
+  background: initial;
+  border: 0;
+}
+
+#content #calWrapper #calendar {
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999;
+  overflow: hidden;
+  width: 905px;
+}
+
+#content #calWrapper #calendar .day {
+  width: 180px;
+  height: 140px;
+  float: left;
+  position: relative;
+  border-right: 1px solid #999;
+  border-top: 1px solid #999;
+}
+
+#content #calWrapper #calendar .date {
+  color: #333;
+  position: absolute;
+  left: 7px;
+  top: 3px;
+}
+
+#content #calWrapper #calendar .day_name {
+  color: #777777;
+  position: absolute;
+  right: 7px;
+  top: 3px;
+}
+
+.today {
+  background: #f3fbff;
+}
+
+.test {
+  background: red;
+}
