@@ -4,8 +4,8 @@ var App = angular.module('App', ['ngRoute', 'appControllers']).config(['$routePr
 
 function($routeProvider){
     $routeProvider.
-    when('/hello', {
-        templateUrl: './views/pages/hello.html',
+    when('/home', {
+        templateUrl: './views/pages/home.html',
         controller: 'AppCtrl'
     }).
     when('/login', {
@@ -17,8 +17,9 @@ function($routeProvider){
         controller: 'RegisterCtrl'
     })
     .otherwise({
-        redirectTo: '/hello'
+        redirectTo: '/home'
     });
 }]);
 
+var App = {};
 module.exports = App;

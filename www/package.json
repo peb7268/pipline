@@ -11,6 +11,8 @@
   },
   "devDependencies": {
     "gulp": "^3.8.10",
+    "browserify": "~7.0.3",
+    "watchify": "^2.2.1",
     "gulp-livereload": "^2.1.0",
     "gulp-notify": "^1.4.2",
     "gulp-phpunit": "^0.6.3",

@@ -1,0 +1,32 @@
+extends ./layout.jade
+
+block body
+    ul#agenda
+        #daySelector
+            ul
+                li.prev
+                    i.fa.fa-chevron-left
+                li.date
+                    |Jan 22, 2015
+                li.next
+                    i.fa.fa-chevron-right
+        form
+            input(type="text" placeholder="New todo.." autofocus)
+
+        ul#controls
+            li
+                a
+                    |Todo
+            li
+                a
+                    |Contact
+            li
+                a
+                    |Appointment
+
+        li.completed
+            |Wipe down the office
+        li
+            |Buy Czara food
+        li
+            |Go to office tomorrow

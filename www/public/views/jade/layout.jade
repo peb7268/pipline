@@ -1,13 +1,12 @@
-doctype html
-html(lang="en")
-    head
-        block title
-            title= 'title here'
-    body
-        ul#toolbar
-            li#menu
-                i.fa.fa-bars
-            li#search
-                i.fa.fa-search
+body
+    ul#toolbar
+        li#menu
+            i.fa.fa-bars
+        li#search
+            input(type="text", name="search", value="Search")
+            i.fa.fa-search
+    section.wrapper
         block body
             p placeholder html
+
+

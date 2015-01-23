@@ -7,4 +7,4 @@ When you are ready to package up the JavaScript for the app just run watchify / 
 front end scripts into a browser bundle. Currently the browser bundle is in js/dist/app.js. The command to
 generate it is:
 
-watchify --entry public/js/app.js --outfile public/dist/app.js.
+watchify --entry public/js/app.js --outfile public/dist/app.js
