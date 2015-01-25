@@ -1,7 +1,11 @@
 
 var HomeController = function($scope){
     var self = this;
-    console.log('HomeController');
+
+    self.toggleItemControls = function(){
+        var $el = $(event.target);
+        debugger;
+    }
 };
 
 module.exports = HomeController;

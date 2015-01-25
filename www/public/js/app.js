@@ -1,3 +1,6 @@
+window.jQuery           = require('jquery');
+window.$                = window.jQuery;
+
 var angular             = require('angular');
 var AppController       = require('./controllers/AppController.js').AppController;
 var HomeController      = require('./controllers/AppController.js').HomeController;
