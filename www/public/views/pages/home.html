@@ -7,7 +7,7 @@
     </li>
   </ul>
   <section class="wrapper">
-    <ul id="agenda">
+    <ul id="agenda" ng-controller="HomeController as HomeCtrl">
       <div id="daySelector">
         <ul>
           <li class="prev"><i class="fa fa-chevron-left"></i></li>
@@ -15,7 +15,7 @@
           <li class="next"><i class="fa fa-chevron-right"></i></li>
         </ul>
       </div>
-      <form>
+      <form id="addTodo">
         <input type="text" placeholder="New todo.." autofocus="autofocus"/>
       </form>
       <ul id="controls">
@@ -23,9 +23,9 @@
         <li><a>Contact</a></li>
         <li><a>Appointment</a></li>
       </ul>
-      <li class="completed">Wipe down the office</li>
-      <li>Buy Czara food</li>
-      <li>Go to office tomorrow</li>
+      <li class="item completed"><a ng-click="AppCtrl.updateItem()">Wipe down the office</a></li>
+      <li class="item"><a ng-click="AppCtrl.updateItem()">Buy Czara food</a></li>
+      <li class="item"><a ng-click="AppCtrl.updateItem()">Go to office tomorrow</a></li>
     </ul>
   </section>
 </body>

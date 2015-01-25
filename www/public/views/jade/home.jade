@@ -1,7 +1,7 @@
 extends ./layout.jade
 
 block body
-    ul#agenda
+    ul#agenda(ng-controller="HomeController as HomeCtrl")
         #daySelector
             ul
                 li.prev
@@ -10,7 +10,7 @@ block body
                     |Jan 22, 2015
                 li.next
                     i.fa.fa-chevron-right
-        form
+        form#addTodo
             input(type="text" placeholder="New todo.." autofocus)
 
         ul#controls
@@ -24,9 +24,9 @@ block body
                 a
                     |Appointment
 
-        li.completed
-            |Wipe down the office
-        li
-            |Buy Czara food
-        li
-            |Go to office tomorrow
+        li.item.completed
+            a(ng-click='AppCtrl.updateItem()') Wipe down the office
+        li.item
+            a(ng-click='AppCtrl.updateItem()') Buy Czara food
+        li.item
+            a(ng-click='AppCtrl.updateItem()') Go to office tomorrow

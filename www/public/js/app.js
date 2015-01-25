@@ -1,25 +1,32 @@
-require('./controllers/AppController.js');
+var angular             = require('angular');
+var AppController       = require('./controllers/AppController.js').AppController;
+var HomeController      = require('./controllers/AppController.js').HomeController;
+var LoginController     = require('./controllers/AppController.js').LoginController;
+var RegisterController  = require('./controllers/AppController.js').RegisterController;
 
-var App = angular.module('App', ['ngRoute', 'appControllers']).config(['$routeProvider',
+require('angular-router-browserify')(angular);
 
-function($routeProvider){
+var App = angular.module('App', ['ngRoute']);
+App.controller('AppController', AppController);
+App.controller('HomeController', HomeController);
+App.controller('LoginController', LoginController);
+App.controller('RegisterController', RegisterController);
+
+App.config(['$routeProvider',
+function($routeProvider, AppController){
     $routeProvider.
     when('/home', {
-        templateUrl: './views/pages/home.html',
-        controller: 'AppCtrl'
+        templateUrl: './views/pages/home.html'
     }).
     when('/login', {
-        templateUrl: './views/pages/login.html',
-        controller: 'LoginCtrl'
+        templateUrl: './views/pages/login.html'
     }).
     when('/register', {
-        templateUrl: './views/pages/register.html',
-        controller: 'RegisterCtrl'
+        templateUrl: './views/pages/register.html'
     })
     .otherwise({
         redirectTo: '/home'
     });
 }]);
 
-var App = {};
 module.exports = App;

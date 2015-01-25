@@ -1,18 +1,15 @@
-var appControllers = angular.module('appControllers', []);
+var HomeController              = require('./HomeController');
+var LoginController             = require('./LoginController');
+var RegisterController          = require('./RegisterController');
 
-appControllers.controller('AppCtrl', ['$scope',
-    function($scope){
-        console.log('AppCtrl');
-}]);
+var controllers = {};
 
-appControllers.controller('LoginCtrl', ['$scope',
-    function($scope){
-        console.log('LoginCtrl');
-}]);
+controllers.AppController = function($scope){
+    var self = this;
+};
 
-appControllers.controller('RegisterCtrl', ['$scope',
-    function($scope){
-        console.log('RegisterCtrl');
-}]);
+controllers.HomeController      = HomeController;
+controllers.LoginController     = LoginController;
+controllers.RegisterController  = RegisterController;
 
-module.exports = appControllers;
+module.exports = controllers;

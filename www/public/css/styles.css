@@ -51,148 +51,141 @@ ul li {
   margin: 0;
   padding: 0; }
 
-#agenda {
+ul#agenda {
   float: right;
-  width: 30%;
+  width: 25%;
   min-height: 450px;
   position: relative;
   overflow: hidden; }
+  ul#agenda #daySelector {
+    position: relative;
+    width: 100%;
+    border-top: 1px solid #999;
+    padding: 3px 0;
+    border-bottom: 1px solid #999;
+    margin: 0 auto 5px auto; }
+  ul#agenda #daySelector ul li {
+    color: #999;
+    margin: 0;
+    padding: 0; }
+  ul#agenda #daySelector ul li.prev {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    font-size: 13pt; }
+  ul#agenda #daySelector ul li.date {
+    text-align: center;
+    color: #777; }
+  ul#agenda #daySelector ul li.next {
+    position: absolute;
+    right: 0;
+    top: 7px;
+    font-size: 14px; }
+  ul#agenda > li {
+    display: block;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    line-height: 1.4;
+    width: 100%;
+    text-align: left; }
+    ul#agenda > li input[type="checkbox"] {
+      margin: 0;
+      padding: 0; }
+  ul#agenda li a {
+    display: block;
+    width: 100%;
+    float: right;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer; }
+  ul#agenda li:nth-child(2) input {
+    width: 100%; }
+  ul#agenda li.completed {
+    color: #ccc; }
+  ul#agenda li.completed span {
+    height: 15px;
+    display: block;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: 8px;
+    border-bottom: 1px solid #ccc; }
+  ul#agenda > li:first-child {
+    padding: 0; }
+  ul#agenda > li:first-child input {
+    border: 0;
+    background: #f9fcf7;
+    /* Old browsers */
+    /* FF3.6+ */
+    /* Chrome,Safari4+ */
+    /* Chrome10+,Safari5.1+ */
+    /* Opera 11.10+ */
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f9fcf7 0%, #eeeeee 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fcf7', endColorstr='#eeeeee',GradientType=0 );
+    /* IE6-9 */
+    background-repeat: no-repeat;
+    color: #777;
+    padding: 7px;
+    display: block;
+    width: 100%;
+    font-size: 12pt;
+    border-radius: 2px;
+    border: 1px solid #eee; }
+  ul#agenda > li:nth-child(2) {
+    position: absolute;
+    width: 420px;
+    top: 30px;
+    left: -3px; }
+  ul#agenda ul#controls {
+    margin: -2px 0 0 0;
+    width: 80%;
+    margin: -3px auto 0;
+    overflow: hidden;
+    padding: 4px 4px 4px 55px;
+    box-sizing: border-box;
+    border-radius: 0 0 4px 4px;
+    position: relative;
+    /*z-index: -1;*/
+    background: #555555;
+    /* Old browsers */
+    /* FF3.6+ */
+    /* Chrome,Safari4+ */
+    /* Chrome10+,Safari5.1+ */
+    /* Opera 11.10+ */
+    /* IE10+ */
+    background: linear-gradient(to bottom, #555555 0%, #333333 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#333333',GradientType=0 );
+    /* IE6-9 */
+    border: 1px solid #000;
+    display: none; }
+  ul#agenda ul#controls li {
+    float: left;
+    margin-right: 7px;
+    padding: 0; }
+  ul#agenda ul#controls li a {
+    text-decoration: none;
+    color: #ddd;
+    font-size: 9pt;
+    background: initial;
+    width: initial;
+    position: static;
+    left: initial;
+    top: initial; }
 
-#agenda #daySelector {
-  position: relative;
-  width: 92%;
-  margin: 0 0 0 22px;
-  border-top: 1px solid #999;
-  padding: 3px 0;
-  border-bottom: 1px solid #999;
-  margin: 0 auto 40px auto; }
-
-#agenda #daySelector ul li {
-  color: #999;
-  margin: 0;
-  padding: 0; }
-
-#agenda #daySelector ul li.prev {
-  position: absolute;
-  left: 0;
-  top: 4px;
-  font-size: 13pt; }
-
-#agenda #daySelector ul li.date {
-  text-align: center;
-  color: #777; }
-
-#agenda #daySelector ul li.next {
-  position: absolute;
-  right: 0;
-  top: 7px;
-  font-size: 14px; }
-
-ul#agenda > li {
-  display: block;
-  padding: 4px 20px;
-  box-sizing: border-box;
-  position: relative;
-  line-height: 1.4;
-  width: 410px; }
-
-ul#agenda li a {
-  display: block;
-  width: 25px;
-  color: #fff;
-  background: #333;
-  position: absolute;
-  top: 5px;
-  right: 0;
-  padding: 0 0 2px;
-  text-align: center;
-  text-decoration: none;
-  line-height: 1;
-  border-radius: 25px; }
-
-ul#agenda li:nth-child(2) input {
-  width: 100%; }
-
-ul#agenda li.completed {
-  color: #ccc; }
-
-ul#agenda li.completed span {
-  height: 15px;
-  display: block;
-  width: 0;
-  position: absolute;
-  top: 0;
-  left: 8px;
-  border-bottom: 1px solid #ccc; }
-
-ul#agenda > li:first-child {
-  padding: 0; }
-
-ul#agenda > li:first-child input {
-  border: 0;
-  background: #f9fcf7;
-  /* Old browsers */
-  /* FF3.6+ */
-  /* Chrome,Safari4+ */
-  /* Chrome10+,Safari5.1+ */
-  /* Opera 11.10+ */
-  /* IE10+ */
-  background: linear-gradient(to bottom, #f9fcf7 0%, #eeeeee 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fcf7', endColorstr='#eeeeee',GradientType=0 );
-  /* IE6-9 */
-  background-repeat: no-repeat;
-  color: #777;
-  padding: 7px;
-  display: block;
+form#addTodo {
   width: 100%;
-  font-size: 12pt;
-  border-radius: 2px;
-  border: 1px solid #eee; }
-
-ul#agenda > li:nth-child(2) {
-  position: absolute;
-  width: 420px;
-  top: 30px;
-  left: -3px; }
-
-#agenda ul#controls {
-  margin: -2px 0 0 0;
-  width: 80%;
-  margin: -3px auto 0;
-  overflow: hidden;
-  padding: 4px 4px 4px 55px;
   box-sizing: border-box;
-  border-radius: 0 0 4px 4px;
-  position: relative;
-  /*z-index: -1;*/
-  background: #555555;
-  /* Old browsers */
-  /* FF3.6+ */
-  /* Chrome,Safari4+ */
-  /* Chrome10+,Safari5.1+ */
-  /* Opera 11.10+ */
-  /* IE10+ */
-  background: linear-gradient(to bottom, #555555 0%, #333333 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#333333',GradientType=0 );
-  /* IE6-9 */
-  border: 1px solid #000; }
-
-#agenda ul#controls li {
-  float: left;
-  margin-right: 7px;
-  padding: 0; }
-
-#agenda ul#controls li a {
-  text-decoration: none;
-  color: #ddd;
-  font-size: 9pt;
-  background: initial;
-  width: initial;
-  position: static;
-  left: initial;
-  top: initial; }
+  padding: 0px;
+  margin: 0 0 10px; }
+  form#addTodo input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid #ccc; }
 
 #content {
   float: left;
@@ -214,7 +207,7 @@ ul#agenda > li:nth-child(2) {
 #content #apointment p {
   margin: 5px 0 0 10px; }
 
-#content #apointment textarea, input {
+#content #apointment textarea {
   border: 1px solid #ccc;
   padding: 5px;
   font-size: 11pt; }
