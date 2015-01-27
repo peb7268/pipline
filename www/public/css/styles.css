@@ -88,23 +88,29 @@ ul#agenda {
     position: relative;
     line-height: 1.4;
     width: 100%;
-    text-align: left; }
+    text-align: left;
+    float: left; }
     ul#agenda > li input[type="checkbox"] {
       margin: 0;
       padding: 0; }
-  ul#agenda li a {
+  ul#agenda li a:first-child {
     display: block;
     width: 100%;
     float: right;
     text-decoration: none;
     color: #333;
     cursor: pointer; }
-  ul#agenda li:nth-child(2) input {
-    width: 100%; }
-  ul#agenda li.completed {
+  ul#agenda li a:nth-child(2) {
+    position: absolute;
+    right: 5px;
+    display: none; }
+  ul#agenda li:hover a.delete {
+    display: block;
+    cursor: pointer; }
+  ul#agenda li.completed a {
     color: #ccc; }
   ul#agenda li.completed span {
-    height: 15px;
+    height: 11px;
     display: block;
     width: 0;
     position: absolute;
@@ -140,31 +146,33 @@ ul#agenda {
     top: 30px;
     left: -3px; }
   ul#agenda ul#controls {
-    margin: -2px 0 0 0;
-    width: 80%;
-    margin: -3px auto 0;
+    width: 100%;
+    margin: 0;
     overflow: hidden;
-    padding: 4px 4px 4px 55px;
+    padding: 3px 0 4px;
     box-sizing: border-box;
-    border-radius: 0 0 4px 4px;
     position: relative;
-    /*z-index: -1;*/
-    background: #555555;
-    /* Old browsers */
-    /* FF3.6+ */
-    /* Chrome,Safari4+ */
-    /* Chrome10+,Safari5.1+ */
-    /* Opera 11.10+ */
-    /* IE10+ */
-    background: linear-gradient(to bottom, #555555 0%, #333333 100%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#333333',GradientType=0 );
-    /* IE6-9 */
-    border: 1px solid #000;
     display: none; }
+    ul#agenda ul#controls .complete a, ul#agenda ul#controls .retask a, ul#agenda ul#controls .reassign a {
+      display: block;
+      text-align: center;
+      color: #fff;
+      font-size: 12pt;
+      padding: 7px;
+      box-sizing: border-box;
+      width: 100%; }
+    ul#agenda ul#controls .complete.active a, ul#agenda ul#controls .retask.active a, ul#agenda ul#controls .reassign.active a {
+      border-bottom: 2px solid #01235a; }
+    ul#agenda ul#controls .complete a {
+      background: #66cc23; }
+    ul#agenda ul#controls .retask a {
+      background: #4285f4; }
+    ul#agenda ul#controls .reassign a {
+      background: #de3e35; }
   ul#agenda ul#controls li {
     float: left;
-    margin-right: 7px;
+    width: 33%;
+    margin-right: 1px;
     padding: 0; }
   ul#agenda ul#controls li a {
     text-decoration: none;

@@ -2,9 +2,10 @@
 <body>
   <ul id="toolbar">
     <li id="menu"><i class="fa fa-bars"></i></li>
-    <li id="search">
-      <input type="text" name="search" value="Search"/><i class="fa fa-search"></i>
-    </li>
+    <!--li#search
+    //input(type="text", name="search", value="Search")
+    //i.fa.fa-search
+    -->
   </ul>
   <section class="wrapper">
     <ul id="agenda" ng-controller="HomeController as HomeCtrl">
@@ -16,16 +17,16 @@
         </ul>
       </div>
       <form id="addTodo">
-        <input type="text" placeholder="New todo.." autofocus="autofocus"/>
+        <input type="text" placeholder="New todo.." autofocus="autofocus" ng-keydown="HomeCtrl.addTodo()"/>
       </form>
-      <ul id="controls">
-        <li><a>Todo</a></li>
-        <li><a>Contact</a></li>
-        <li><a>Appointment</a></li>
-      </ul>
-      <li class="item completed"><a ng-click="HomeCtrl.toggleItemControls()">Wipe down the office</a></li>
-      <li class="item"><a ng-click="HomeCtrl.toggleItemControls()">Buy Czara food</a></li>
-      <li class="item"><a ng-click="HomeCtrl.toggleItemControls()">Go to office tomorrow</a></li>
+      <li ng-repeat="item in HomeCtrl.items" data-id="{{$index}}" class="item"><a ng-click="HomeCtrl.toggleItemControls()">{{item.title}}</a><a ng-click="HomeCtrl.toggleStatus()" class="delete"><i class="fa fa-trash-o"></i></a></li>
     </ul>
+    <script type="text/template" id="controlsTemplate">
+      <ul id="controls" style="display: none;">
+          <li class="complete active"><a>Complete</a></li>
+          <li class="retask"><a>ReTask</a></li>
+          <li class="reassign"><a>ReAssign</a></li>
+      </ul>
+    </script>
   </section>
 </body>
