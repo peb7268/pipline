@@ -132,6 +132,11 @@ ul#agenda {
         padding: 7px;
         box-sizing: border-box;
         width: 100%;
+
+        i.fa {
+          margin: 1px 0 0 -1px;
+          padding-right: 7px;
+        }
       }
       &.active a {
         border-bottom: 2px solid #01235a;

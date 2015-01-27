@@ -161,6 +161,9 @@ ul#agenda {
       padding: 7px;
       box-sizing: border-box;
       width: 100%; }
+      ul#agenda ul#controls .complete a i.fa, ul#agenda ul#controls .retask a i.fa, ul#agenda ul#controls .reassign a i.fa {
+        margin: 1px 0 0 -1px;
+        padding-right: 7px; }
     ul#agenda ul#controls .complete.active a, ul#agenda ul#controls .retask.active a, ul#agenda ul#controls .reassign.active a {
       border-bottom: 2px solid #01235a; }
     ul#agenda ul#controls .complete a {

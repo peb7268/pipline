@@ -10229,6 +10229,8 @@ var HomeController = function($scope){
         var $item       = $el.parent().parent();
         var isCompleted = $item.hasClass('completed');
 
+        if($('#controls').is(':visible')) self.toggleItemControls();
+
         if(! isCompleted){
             $item.addClass('completed');
             $strike = $('<span />', { class: 'strike'});
