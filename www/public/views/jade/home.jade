@@ -7,7 +7,7 @@ block body
                 li.prev
                     i.fa.fa-chevron-left
                 li.date
-                    |Jan 22, 2015
+
                 li.next
                     i.fa.fa-chevron-right
 
@@ -15,7 +15,7 @@ block body
             input(type="text", placeholder="New todo..", autofocus, ng-keydown="HomeCtrl.addTodo()")
 
 
-        li.item(ng-repeat="item in HomeCtrl.items", data-id="{{$index}}")
+        li.item(ng-repeat="item in HomeCtrl.items", data-id="{{item.id}}")
             a(ng-click='HomeCtrl.toggleItemControls()') {{item.title}}
             a.delete(ng-click='HomeCtrl.toggleStatus()')
                 i.fa.fa-trash-o

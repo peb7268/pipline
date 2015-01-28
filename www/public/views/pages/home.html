@@ -12,14 +12,14 @@
       <div id="daySelector">
         <ul>
           <li class="prev"><i class="fa fa-chevron-left"></i></li>
-          <li class="date">Jan 22, 2015</li>
+          <li class="date"></li>
           <li class="next"><i class="fa fa-chevron-right"></i></li>
         </ul>
       </div>
       <form id="addTodo">
         <input type="text" placeholder="New todo.." autofocus="autofocus" ng-keydown="HomeCtrl.addTodo()"/>
       </form>
-      <li ng-repeat="item in HomeCtrl.items" data-id="{{$index}}" class="item"><a ng-click="HomeCtrl.toggleItemControls()">{{item.title}}</a><a ng-click="HomeCtrl.toggleStatus()" class="delete"><i class="fa fa-trash-o"></i></a></li>
+      <li ng-repeat="item in HomeCtrl.items" data-id="{{item.id}}" class="item"><a ng-click="HomeCtrl.toggleItemControls()">{{item.title}}</a><a ng-click="HomeCtrl.toggleStatus()" class="delete"><i class="fa fa-trash-o"></i></a></li>
     </ul>
     <script type="text/template" id="controlsTemplate">
       <ul id="controls" style="display: none;">

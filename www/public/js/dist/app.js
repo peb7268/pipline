@@ -10146,7 +10146,7 @@ require('angular-router-browserify')(angular);
 
 var App = angular.module('App', ['ngRoute']);
 App.controller('AppController', AppController);
-App.controller('HomeController', HomeController);
+App.controller('HomeController', ['$http', HomeController ]);
 App.controller('LoginController', LoginController);
 App.controller('RegisterController', RegisterController);
 
@@ -10188,18 +10188,29 @@ module.exports = controllers;
 
 },{"./HomeController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/HomeController.js","./LoginController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/LoginController.js","./RegisterController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/RegisterController.js"}],"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/HomeController.js":[function(require,module,exports){
 
-var HomeController = function($scope){
-    var self = this;
+var HomeController = function($http, $scope){
+    var self    = this;
+    self.$http  = $http;
+    self.items  = [];
 
-    $scope.init = function(){
-        var self = this;
+    self.init = function(){
+        window.self = this;
+        self.setDate($('#daySelector > ul li.date'))
+        self.$http.get('/api/v1/todos')
+            .success(function(data, status, headers, config) {
+                self.items = data;
+            })
+            .error(function(data, status, headers, config) {
+                console.error(status, data);
+        });
     };
 
-    self.items = [
-        {title: "Wipe down the office", status: 1},
-        {title: "Buy Czara food", status: 0},
-        {title: "Go to office tomorrow", status: 0}
-    ];
+    self.setDate = function($el){
+        var date = new Date();
+        var formatted_date = date.toDateString().split(' ').splice(1, 3).join(', ').replace(',', '', 1);
+
+        $el.html(formatted_date);
+    };
 
     self.toggleItemControls = function(){
         var self = this;
@@ -10221,6 +10232,26 @@ var HomeController = function($scope){
 
         this.items.push(item);
         $el.val('');
+
+        self.$http.post('/api/v1/todos', item)
+            .success(function(data, status, headers, config) {
+                console.log(status, data);
+            })
+            .error(function(data, status, headers, config) {
+                console.log(status, data);
+        });
+    };
+
+    self.deleteTodo  = function(id){
+        var self = this;
+
+        self.$http.delete('/api/v1/todos/' + id)
+            .success(function(data, status, headers, config) {
+                console.log(status, data);
+            })
+            .error(function(data, status, headers, config) {
+                console.log(status, data);
+            });
     };
 
     self.toggleStatus = function(){
@@ -10229,14 +10260,14 @@ var HomeController = function($scope){
         var $item       = $el.parent().parent();
         var isCompleted = $item.hasClass('completed');
 
-        if($('#controls').is(':visible')) self.toggleItemControls();
-
         if(! isCompleted){
             $item.addClass('completed');
             $strike = $('<span />', { class: 'strike'});
             $item.append($strike);
             $strike.animate({
                 width: '90%'
+            }, 100, function(){
+                if($('#controls').is(':visible')) self.toggleItemControls();
             });
         }
         if(isCompleted){
@@ -10244,17 +10275,25 @@ var HomeController = function($scope){
                 var id = $(this).data('id');
                 self.items.splice(id, 1);
                 $(this).remove();
-                self.updateSet(self.items);
+                self.deleteTodo(id);
             });
         }
     };
 
     self.updateSet = function(items){
         var self = this;
+
         console.log('updating set', items);
+        self.$http.post('/api/v1/todos', items)
+            .success(function(data, status, headers, config) {
+                console.log(status, data);
+            })
+            .error(function(data, status, headers, config) {
+                console.log(status, data);
+        });
     };
 
-    $scope.init();
+    self.init();
 };
 
 module.exports = HomeController;

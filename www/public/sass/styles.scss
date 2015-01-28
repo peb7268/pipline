@@ -38,9 +38,10 @@ ul#agenda {
     margin: 0 auto 5px auto;
   }
   #daySelector ul li { color: #999; margin: 0; padding: 0; }
-  #daySelector ul li.prev { position: absolute; left: 0; top: 4px; font-size: 13pt; }
+  #daySelector ul li.prev, #daySelector ul li.next { top: 4px; font-size: 12pt; }
+  #daySelector ul li.prev { position: absolute; left: 0; }
   #daySelector ul li.date { text-align: center; color: #777; }
-  #daySelector ul li.next { position: absolute; right: 0; top: 7px; font-size: 14px; }
+  #daySelector ul li.next { position: absolute; right: 0; }
 
   & > li {
     display: block;

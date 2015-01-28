@@ -11,7 +11,7 @@ require('angular-router-browserify')(angular);
 
 var App = angular.module('App', ['ngRoute']);
 App.controller('AppController', AppController);
-App.controller('HomeController', HomeController);
+App.controller('HomeController', ['$http', HomeController ]);
 App.controller('LoginController', LoginController);
 App.controller('RegisterController', RegisterController);
 
