@@ -1,4 +1,21 @@
 extends ./layout.jade
 	
 block body
-	p login
+	.form-wrapper 
+			h1.title Login
+				p Put your priorities in their place.
+
+			form
+				.form-group
+					.input-group
+						span.input-group-addon
+							span @
+						input.form-control(type="text", placeholder="Username")
+
+				.form-group
+					.input-group
+						span.input-group-addon
+							span.glyphicon.glyphicon-lock
+						input.form-control#inputPassword(type="password", placeholder="Password")
+
+				button.btn.btn-primary(type="submit") Login

@@ -3,7 +3,7 @@ window.$                = window.jQuery;
 
 var angular             = require('angular');
 var AppController       = require('./controllers/AppController.js').AppController;
-var HomeController      = require('./controllers/AppController.js').HomeController;
+var AgendaController    = require('./controllers/AppController.js').AgendaController;
 var CalendarController  = require('./controllers/AppController.js').CalendarController;
 var LoginController     = require('./controllers/AppController.js').LoginController;
 var RegisterController  = require('./controllers/AppController.js').RegisterController;
@@ -12,7 +12,7 @@ require('angular-router-browserify')(angular);
 
 var App = angular.module('App', ['ngRoute']);
 App.controller('AppController', AppController);
-App.controller('HomeController', ['$http', HomeController]);
+App.controller('AgendaController', ['$http', AgendaController]);
 App.controller('CalendarController', ['$http', CalendarController]);
 App.controller('LoginController', LoginController);
 App.controller('RegisterController', RegisterController);

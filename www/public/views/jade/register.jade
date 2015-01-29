@@ -1,4 +1,39 @@
 extends ./layout.jade
 	
 block body
-	p register
+	.form-wrapper 
+		h1.title Register
+			p Time to take control of your schedule.
+
+		form
+			.form-group
+				.input-group
+					span.input-group-addon
+						span @
+					input.form-control(type="text", placeholder="Username")
+			
+			.form-group
+				.input-group
+					span.input-group-addon
+						span.glyphicon.glyphicon-user
+					input.form-control(type="text", placeholder="First Name")
+
+			.form-group
+				.input-group
+					span.input-group-addon
+						span.glyphicon.glyphicon-user
+					input.form-control(type="text", placeholder="Last Name")
+
+			.form-group
+				.input-group
+					span.input-group-addon
+						span.glyphicon.glyphicon-envelope
+					input.form-control#inputEmail(type="email", placeholder="Email")
+
+			.form-group
+				.input-group
+					span.input-group-addon
+						span.glyphicon.glyphicon-lock
+					input.form-control#inputPassword(type="password", placeholder="Password")
+        
+			button.btn.btn-primary(type="submit") Signup

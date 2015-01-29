@@ -7,7 +7,7 @@ block body
             span.todoCount
             span.completed
 
-    ul#agenda(ng-controller="HomeController as HomeCtrl")
+    ul#agenda(ng-controller="AgendaController as AgendaCtrl")
         #daySelector
             ul
                 li.prev
@@ -18,17 +18,17 @@ block body
                     i.fa.fa-chevron-right
 
         form#addTodo
-            input(type="text", placeholder="New todo..", autofocus, ng-keydown="HomeCtrl.addTodo()")
+            input(type="text", placeholder="New todo..", autofocus, ng-keydown="AgendaCtrl.addTodo()")
 
 
-        li.item(ng-repeat="item in HomeCtrl.items", data-id="{{item.id}}")
-            a(ng-click='HomeCtrl.toggleItemControls()') {{item.title}}
-            a.delete(ng-click='HomeCtrl.setTodoFinished()')
+        li.item(ng-repeat="item in AgendaCtrl.items", data-id="{{item.id}}")
+            a(ng-click='AgendaCtrl.toggleItemControls()') {{item.title}}
+            a.delete(ng-click='AgendaCtrl.setTodoFinished()')
                 i.fa.fa-trash-o
 
     script(type="text/template", id="controlsTemplate").
         <ul id="controls" style="display: none;">
-            <li class="complete active"><a ng-click="HomeCtrl.editTodoDetails()"><i class="fa fa-pencil-square-o"></i>Details</a></li>
+            <li class="complete active"><a ng-click="AgendaCtrl.editTodoDetails()"><i class="fa fa-pencil-square-o"></i>Details</a></li>
             <li class="retask"><a><i class="fa fa-clock-o"></i>ReTask</a></li>
             <li class="reassign"><a><i class="fa fa-user-plus"></i>ReAssign</a></li>
         </ul>

@@ -19,7 +19,7 @@
     <ul id="canvas" ng-controller="CalendarController as CalCtrl">
       <li ng-repeat="days in CalCtrl.daysInMonth" ng-class="{today: $index == (CalCtrl.getToday() - 1)}" class="day">{{ $index + 1 }}<a data-day_index="{{ $index }}"></a><span class="todoCount"></span><span class="completed"></span></li>
     </ul>
-    <ul id="agenda" ng-controller="HomeController as HomeCtrl">
+    <ul id="agenda" ng-controller="AgendaController as AgendaCtrl">
       <div id="daySelector">
         <ul>
           <li class="prev"><i class="fa fa-chevron-left"></i></li>
@@ -28,13 +28,13 @@
         </ul>
       </div>
       <form id="addTodo">
-        <input type="text" placeholder="New todo.." autofocus="autofocus" ng-keydown="HomeCtrl.addTodo()"/>
+        <input type="text" placeholder="New todo.." autofocus="autofocus" ng-keydown="AgendaCtrl.addTodo()"/>
       </form>
-      <li ng-repeat="item in HomeCtrl.items" data-id="{{item.id}}" class="item"><a ng-click="HomeCtrl.toggleItemControls()">{{item.title}}</a><a ng-click="HomeCtrl.setTodoFinished()" class="delete"><i class="fa fa-trash-o"></i></a></li>
+      <li ng-repeat="item in AgendaCtrl.items" data-id="{{item.id}}" class="item"><a ng-click="AgendaCtrl.toggleItemControls()">{{item.title}}</a><a ng-click="AgendaCtrl.setTodoFinished()" class="delete"><i class="fa fa-trash-o"></i></a></li>
     </ul>
     <script type="text/template" id="controlsTemplate">
       <ul id="controls" style="display: none;">
-          <li class="complete active"><a ng-click="HomeCtrl.editTodoDetails()"><i class="fa fa-pencil-square-o"></i>Details</a></li>
+          <li class="complete active"><a ng-click="AgendaCtrl.editTodoDetails()"><i class="fa fa-pencil-square-o"></i>Details</a></li>
           <li class="retask"><a><i class="fa fa-clock-o"></i>ReTask</a></li>
           <li class="reassign"><a><i class="fa fa-user-plus"></i>ReAssign</a></li>
       </ul>

@@ -1,4 +1,4 @@
-var HomeController              = require('./HomeController');
+var AgendaController            = require('./AgendaController');
 var CalendarController          = require('./CalendarController');
 var LoginController             = require('./LoginController');
 var RegisterController          = require('./RegisterController');
@@ -16,7 +16,7 @@ controllers.AppController = function($scope){
 };
 
 controllers.CalendarController  = CalendarController;
-controllers.HomeController      = HomeController;
+controllers.AgendaController    = AgendaController;
 controllers.LoginController     = LoginController;
 controllers.RegisterController  = RegisterController;
 
