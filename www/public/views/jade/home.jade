@@ -2,7 +2,7 @@ extends ./layout.jade
 
 block body
     ul#canvas(ng-controller="CalendarController as CalCtrl")
-        li.day(ng-repeat="days in CalCtrl.daysInMonth", ng-class="{selected: $index == (CalCtrl.getToday() - 1)}") {{ $index + 1 }}
+        li.day(ng-repeat="days in CalCtrl.daysInMonth", ng-class="{today: $index == (CalCtrl.getToday() - 1)}") {{ $index + 1 }}
             a(data-day_index="{{ $index }}")
             span.todoCount
             span.completed

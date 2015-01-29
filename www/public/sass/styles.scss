@@ -305,10 +305,52 @@ form#addTodo {
   #menu {
     position: absolute;
     left: 15px;
+    
     i {
       color: #fff;
       font-size: 18pt;
       line-height: 2.1;
+      
+      /* Firefox */
+      -moz-transition: all 200ms;
+      /* WebKit */
+      -webkit-transition: all 200ms;
+      /* Opera */
+      -o-transition: all 200ms;
+      /* Standard */
+      transition: all 200ms;
+    }
+
+    i.open {
+      /* Firefox */
+      -moz-transform: rotate(90deg);
+      /* WebKit */
+      -webkit-transform: rotate(90deg);
+      /* Opera */
+      -o-transform: rotate(90deg);
+      /* Standard */
+      transform: rotate(90deg);
+    }
+  }
+  
+  #nav {
+    ul {
+      display: none;
+      margin: 55px 0 0 12px;
+      padding: 10px 0px 10px 12px;
+      position: relative;
+      z-index: -999;
+      background: #4285f4;
+      width: 175px;
+
+      li {
+        text-align: left;
+        margin: 4px auto 5px 0;
+        
+        a {
+          color: #fff;
+        }
+      }
     }
   }
 

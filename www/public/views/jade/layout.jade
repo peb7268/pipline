@@ -1,12 +1,21 @@
 body
-    ul#toolbar
-        li#menu
-            i.fa.fa-bars
-        //li#search
-            //input(type="text", name="search", value="Search")
-            //i.fa.fa-search
-    section.wrapper
-        block body
-            p placeholder html
+	ul#toolbar
+		li#menu(ng-click="AppCtrl.toggleMenu()")
+			i.fa.fa-bars
+		li#nav
+			ul
+				li
+					a(href="#/home") Home
+				li
+					a(href="#/register") Register
+				li
+					a(href="#/login") Login
+		//li#search
+			//input(type="text", name="search", value="Search")
+			//i.fa.fa-search
+	
+	section.wrapper
+		block body
+			p placeholder html
 
 
