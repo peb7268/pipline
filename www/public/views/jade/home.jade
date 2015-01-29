@@ -1,6 +1,12 @@
 extends ./layout.jade
 
 block body
+    ul#canvas(ng-controller="CalendarController as CalCtrl")
+        li.day(ng-repeat="days in CalCtrl.daysInMonth", ng-class="{selected: $index == (CalCtrl.getToday() - 1)}") {{ $index + 1 }}
+            a(data-day_index="{{ $index }}")
+            span.todoCount
+            span.completed
+
     ul#agenda(ng-controller="HomeController as HomeCtrl")
         #daySelector
             ul
@@ -17,12 +23,12 @@ block body
 
         li.item(ng-repeat="item in HomeCtrl.items", data-id="{{item.id}}")
             a(ng-click='HomeCtrl.toggleItemControls()') {{item.title}}
-            a.delete(ng-click='HomeCtrl.toggleStatus()')
+            a.delete(ng-click='HomeCtrl.setTodoFinished()')
                 i.fa.fa-trash-o
 
     script(type="text/template", id="controlsTemplate").
         <ul id="controls" style="display: none;">
-            <li class="complete active"><a><i class="fa fa-check-circle"></i>Complete</a></li>
+            <li class="complete active"><a ng-click="HomeCtrl.editTodoDetails()"><i class="fa fa-pencil-square-o"></i>Details</a></li>
             <li class="retask"><a><i class="fa fa-clock-o"></i>ReTask</a></li>
             <li class="reassign"><a><i class="fa fa-user-plus"></i>ReAssign</a></li>
         </ul>

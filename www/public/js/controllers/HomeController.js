@@ -1,11 +1,11 @@
 
 var HomeController = function($http, $scope){
-    var self    = this;
-    self.$http  = $http;
-    self.items  = [];
+    this.$http  = $http;
+    this.items  = [];
 
-    self.init = function(){
-        window.self = this;
+    this.init = function(){
+        var self = this;
+
         self.setDate($('#daySelector > ul li.date'))
         self.$http.get('/api/v1/todos')
             .success(function(data, status, headers, config) {
@@ -16,16 +16,21 @@ var HomeController = function($http, $scope){
         });
     };
 
-    self.setDate = function($el){
+
+    this.setDate = function($el){
         var date = new Date();
         var formatted_date = date.toDateString().split(' ').splice(1, 3).join(', ').replace(',', '', 1);
 
         $el.html(formatted_date);
     };
 
-    self.toggleItemControls = function(){
+    this.toggleItemControls = function(){
         var self = this;
         event.preventDefault();
+        var $parent = $(event.target).parent();
+
+        if(event.target.nodeName == 'A' && $parent.hasClass('completed')) $parent.removeClass('completed');
+
         var $el         = $(event.target);
         var $controls   = $el.parent().parent().find('#controls');
 
@@ -35,7 +40,7 @@ var HomeController = function($http, $scope){
         $controls.slideToggle(100);
     };
 
-    self.addTodo  = function(){
+    this.addTodo  = function(){
         var self = this;
         if(event.which != 13) return false;
         var $el         = $(event.target);
@@ -53,7 +58,7 @@ var HomeController = function($http, $scope){
         });
     };
 
-    self.deleteTodo  = function(id){
+    this.deleteTodo  = function(id){
         var self = this;
 
         self.$http.delete('/api/v1/todos/' + id)
@@ -65,7 +70,7 @@ var HomeController = function($http, $scope){
             });
     };
 
-    self.toggleStatus = function(){
+    this.setTodoFinished = function(){
         var self        = this;
         var $el         = $(event.target);
         var $item       = $el.parent().parent();
@@ -73,7 +78,7 @@ var HomeController = function($http, $scope){
 
         if(! isCompleted){
             $item.addClass('completed');
-            $strike = $('<span />', { class: 'strike'});
+            $strike = $('<span />', { class: 'strike', "ng-click": "HomeCtrl.toggleItemControls()"});
             $item.append($strike);
             $strike.animate({
                 width: '90%'
@@ -91,7 +96,7 @@ var HomeController = function($http, $scope){
         }
     };
 
-    self.updateSet = function(items){
+    this.updateSet = function(items){
         var self = this;
 
         console.log('updating set', items);
@@ -104,7 +109,7 @@ var HomeController = function($http, $scope){
         });
     };
 
-    self.init();
+    this.init();
 };
 
 module.exports = HomeController;

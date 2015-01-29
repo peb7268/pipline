@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function()
 {
     return View::make('public.layouts.app');
@@ -21,4 +23,6 @@ Route::post('/processForm', 'AppController@processForm');
 
 Route::group(array('prefix' => 'api/v1/'), function(){
     Route::resource('appointment', 'AppointmentController');
+    Route::resource('users', 'UsersController');
+    Route::resource('todos', 'TodosController');
 });

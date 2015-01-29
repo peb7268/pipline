@@ -25,7 +25,7 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(array(
 	#'local' 		=> array('Paul-Barricks-MacBook-Pro.local'),
 	#'local' 		=> array('Tonytop.local'),
-	'local' 		=> array('precise32'),
+	'local' 		=> array('homestead'),
 	'staging' 		=> array('presentation.gointengo.com'),
 	'production' 	=> array('presentation')
 ));

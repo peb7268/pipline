@@ -60,26 +60,25 @@ ul#agenda {
   ul#agenda #daySelector {
     position: relative;
     width: 100%;
-    border-top: 1px solid #999;
-    padding: 3px 0;
-    border-bottom: 1px solid #999;
-    margin: 0 auto 5px auto; }
-  ul#agenda #daySelector ul li {
-    color: #999;
-    margin: 0;
-    padding: 0; }
-  ul#agenda #daySelector ul li.prev, ul#agenda #daySelector ul li.next {
-    top: 4px;
-    font-size: 12pt; }
-  ul#agenda #daySelector ul li.prev {
-    position: absolute;
-    left: 0; }
-  ul#agenda #daySelector ul li.date {
-    text-align: center;
-    color: #777; }
-  ul#agenda #daySelector ul li.next {
-    position: absolute;
-    right: 0; }
+    padding: 5px 0;
+    margin: 0 auto 5px auto;
+    background: #01235a; }
+    ul#agenda #daySelector ul li {
+      color: #fff;
+      margin: 0;
+      padding: 0; }
+    ul#agenda #daySelector ul li.prev, ul#agenda #daySelector ul li.next {
+      top: 5px;
+      font-size: 12pt; }
+    ul#agenda #daySelector ul li.prev {
+      position: absolute;
+      left: 3px; }
+    ul#agenda #daySelector ul li.date {
+      text-align: center;
+      color: #fff; }
+    ul#agenda #daySelector ul li.next {
+      position: absolute;
+      right: 3px; }
   ul#agenda > li {
     display: block;
     padding: 0;
@@ -88,10 +87,21 @@ ul#agenda {
     line-height: 1.4;
     width: 100%;
     text-align: left;
-    float: left; }
+    float: left;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #fff; }
+    ul#agenda > li:nth-child(3) {
+      border-top: none; }
+    ul#agenda > li:last-child {
+      border-bottom: none; }
     ul#agenda > li input[type="checkbox"] {
       margin: 0;
       padding: 0; }
+  ul#agenda li a {
+    padding-top: 5px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    box-sizing: border-box; }
   ul#agenda li a:first-child {
     display: block;
     width: 100%;
@@ -107,15 +117,8 @@ ul#agenda {
     display: block;
     cursor: pointer; }
   ul#agenda li.completed a {
-    color: #ccc; }
-  ul#agenda li.completed span {
-    height: 11px;
-    display: block;
-    width: 0;
-    position: absolute;
-    top: 0;
-    left: 8px;
-    border-bottom: 1px solid #ccc; }
+    color: #ccc;
+    text-decoration: line-through; }
   ul#agenda > li:first-child {
     padding: 0; }
   ul#agenda > li:first-child input {
@@ -342,3 +345,36 @@ form#addTodo {
   width: 90%; }
   .wrapper p {
     text-align: left; }
+
+#canvas {
+  float: left;
+  width: 70%;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: #dce5f4;
+  border-left: 1px solid #5d6a7f;
+  border-top: 1px solid #5d6a7f; }
+  #canvas li {
+    text-align: left; }
+  #canvas .day {
+    width: 100px;
+    height: 100px;
+    float: left;
+    padding: 7px;
+    box-sizing: border-box;
+    border-right: 1px solid #5d6a7f;
+    border-bottom: 1px solid #5d6a7f;
+    position: relative;
+    z-index: 1; }
+    #canvas .day a {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10; }
+      #canvas .day a:hover {
+        cursor: pointer; }
+    #canvas .day.selected {
+      background: #eef4ff; }

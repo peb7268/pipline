@@ -10139,6 +10139,7 @@ window.$                = window.jQuery;
 var angular             = require('angular');
 var AppController       = require('./controllers/AppController.js').AppController;
 var HomeController      = require('./controllers/AppController.js').HomeController;
+var CalendarController  = require('./controllers/AppController.js').CalendarController;
 var LoginController     = require('./controllers/AppController.js').LoginController;
 var RegisterController  = require('./controllers/AppController.js').RegisterController;
 
@@ -10146,7 +10147,8 @@ require('angular-router-browserify')(angular);
 
 var App = angular.module('App', ['ngRoute']);
 App.controller('AppController', AppController);
-App.controller('HomeController', ['$http', HomeController ]);
+App.controller('HomeController', ['$http', HomeController]);
+App.controller('CalendarController', ['$http', CalendarController]);
 App.controller('LoginController', LoginController);
 App.controller('RegisterController', RegisterController);
 
@@ -10171,6 +10173,7 @@ module.exports = App;
 
 },{"./controllers/AppController.js":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/AppController.js","angular":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/node_modules/angular/index.js","angular-router-browserify":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/node_modules/angular-router-browserify/index.js","jquery":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/node_modules/jquery/dist/jquery.js"}],"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/AppController.js":[function(require,module,exports){
 var HomeController              = require('./HomeController');
+var CalendarController          = require('./CalendarController');
 var LoginController             = require('./LoginController');
 var RegisterController          = require('./RegisterController');
 
@@ -10180,21 +10183,58 @@ controllers.AppController = function($scope){
     var self = this;
 };
 
+controllers.CalendarController  = CalendarController;
 controllers.HomeController      = HomeController;
 controllers.LoginController     = LoginController;
 controllers.RegisterController  = RegisterController;
 
 module.exports = controllers;
 
-},{"./HomeController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/HomeController.js","./LoginController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/LoginController.js","./RegisterController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/RegisterController.js"}],"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/HomeController.js":[function(require,module,exports){
+},{"./CalendarController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/CalendarController.js","./HomeController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/HomeController.js","./LoginController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/LoginController.js","./RegisterController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/RegisterController.js"}],"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/CalendarController.js":[function(require,module,exports){
+var CalendarController = function($scope){
+    console.log('CalendarController');
+
+    this.init = function(){
+        var self = this;
+        this.daysInMonth = this.getNumberOfDays();
+        // self.paintCalendar($('#canvas'), new Date);
+    };
+
+    this.getNumberOfDays = function(m, y) {
+    	var numOfDays    = /4|6|9|11/.test(m)?30:m==2?(!(y%4)&&y%100)||!(y%400)?29:28:31;
+    	var days         = [];
+    	for(var i = 0; i < numOfDays; i++){
+    		var d = i + 1;
+    		days.push(d);
+    	}
+    	
+        return days;
+    };
+
+    this.getToday       = function(date){
+        var date        = (typeof date !== 'undefined') ? date : new Date();
+        return date.getDate();
+    };
+
+    this.paintCalendar  = function($canvas, date){
+        var daysInMonth = this.getNumberOfDays(date.getMonth(), date.getUTCFullYear());
+        var today       = this.getToday(date);
+    };
+
+    this.init();
+};
+
+module.exports = CalendarController;
+
+},{}],"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/HomeController.js":[function(require,module,exports){
 
 var HomeController = function($http, $scope){
-    var self    = this;
-    self.$http  = $http;
-    self.items  = [];
+    this.$http  = $http;
+    this.items  = [];
 
-    self.init = function(){
-        window.self = this;
+    this.init = function(){
+        var self = this;
+
         self.setDate($('#daySelector > ul li.date'))
         self.$http.get('/api/v1/todos')
             .success(function(data, status, headers, config) {
@@ -10205,16 +10245,21 @@ var HomeController = function($http, $scope){
         });
     };
 
-    self.setDate = function($el){
+
+    this.setDate = function($el){
         var date = new Date();
         var formatted_date = date.toDateString().split(' ').splice(1, 3).join(', ').replace(',', '', 1);
 
         $el.html(formatted_date);
     };
 
-    self.toggleItemControls = function(){
+    this.toggleItemControls = function(){
         var self = this;
         event.preventDefault();
+        var $parent = $(event.target).parent();
+
+        if(event.target.nodeName == 'A' && $parent.hasClass('completed')) $parent.removeClass('completed');
+
         var $el         = $(event.target);
         var $controls   = $el.parent().parent().find('#controls');
 
@@ -10224,7 +10269,7 @@ var HomeController = function($http, $scope){
         $controls.slideToggle(100);
     };
 
-    self.addTodo  = function(){
+    this.addTodo  = function(){
         var self = this;
         if(event.which != 13) return false;
         var $el         = $(event.target);
@@ -10242,7 +10287,7 @@ var HomeController = function($http, $scope){
         });
     };
 
-    self.deleteTodo  = function(id){
+    this.deleteTodo  = function(id){
         var self = this;
 
         self.$http.delete('/api/v1/todos/' + id)
@@ -10254,7 +10299,7 @@ var HomeController = function($http, $scope){
             });
     };
 
-    self.toggleStatus = function(){
+    this.setTodoFinished = function(){
         var self        = this;
         var $el         = $(event.target);
         var $item       = $el.parent().parent();
@@ -10262,7 +10307,7 @@ var HomeController = function($http, $scope){
 
         if(! isCompleted){
             $item.addClass('completed');
-            $strike = $('<span />', { class: 'strike'});
+            $strike = $('<span />', { class: 'strike', "ng-click": "HomeCtrl.toggleItemControls()"});
             $item.append($strike);
             $strike.animate({
                 width: '90%'
@@ -10280,7 +10325,7 @@ var HomeController = function($http, $scope){
         }
     };
 
-    self.updateSet = function(items){
+    this.updateSet = function(items){
         var self = this;
 
         console.log('updating set', items);
@@ -10293,7 +10338,7 @@ var HomeController = function($http, $scope){
         });
     };
 
-    self.init();
+    this.init();
 };
 
 module.exports = HomeController;
