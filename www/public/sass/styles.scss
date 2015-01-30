@@ -461,6 +461,15 @@ form#addTodo {
   }
 }
 
+.success {
+  background: #e8fad7;
+  color: #9ec579;
+  border: 1px solid #9ec579;
+  padding: 4px;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
 //Bootstrap Overrides
 form{
   .btn-primary {

@@ -423,6 +423,14 @@ form#addTodo {
     #canvas .day.selected {
       background: #eef4ff; }
 
+.success {
+  background: #e8fad7;
+  color: #9ec579;
+  border: 1px solid #9ec579;
+  padding: 4px;
+  box-sizing: border-box;
+  border-radius: 2px; }
+
 form .btn-primary {
   -webkit-linear-gradient: none;
   background-image: none;

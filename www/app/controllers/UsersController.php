@@ -20,8 +20,8 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
-	}
+	    //
+    }
 
 
 	/**
@@ -31,8 +31,10 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
-	}
+        $input = Input::all();
+        $input['password'] = Hash::make($input['password']);
+        return User::make($input);
+    }
 
 
 	/**

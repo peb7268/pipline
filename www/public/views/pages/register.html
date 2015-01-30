@@ -16,34 +16,34 @@
     -->
   </ul>
   <section class="wrapper">
-    <div class="form-wrapper"> 
+    <div ng-controller="RegisterController as RegCtrl" class="form-wrapper">
       <h1 class="title">Register
         <p>Time to take control of your schedule.</p>
       </h1>
-      <form>
+      <form ng-submit="RegCtrl.submitForm()">
         <div class="form-group">
           <div class="input-group"><span class="input-group-addon"><span>@</span></span>
-            <input type="text" placeholder="Username" class="form-control"/>
+            <input type="text" placeholder="Username" name="username" ng-model="RegCtrl.user.username" class="form-control"/>
           </div>
         </div>
         <div class="form-group">
           <div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input type="text" placeholder="First Name" class="form-control"/>
+            <input type="text" placeholder="First Name" name="first_name" ng-model="RegCtrl.user.first_name" class="form-control"/>
           </div>
         </div>
         <div class="form-group">
           <div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            <input type="text" placeholder="Last Name" class="form-control"/>
+            <input type="text" placeholder="Last Name" name="last_name" ng-model="RegCtrl.user.last_name" class="form-control"/>
           </div>
         </div>
         <div class="form-group">
           <div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-            <input id="inputEmail" type="email" placeholder="Email" class="form-control"/>
+            <input id="inputEmail" type="email" placeholder="Email" name="email" ng-model="RegCtrl.user.email" class="form-control"/>
           </div>
         </div>
         <div class="form-group">
           <div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-            <input id="inputPassword" type="password" placeholder="Password" class="form-control"/>
+            <input id="inputPassword" type="password" placeholder="Password" name="password" ng-model="RegCtrl.user.password" class="form-control"/>
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Signup</button>

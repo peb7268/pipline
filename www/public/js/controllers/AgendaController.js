@@ -1,4 +1,3 @@
-
 var AgendaController = function($http, $scope){
     this.$http  = $http;
     this.items  = [];

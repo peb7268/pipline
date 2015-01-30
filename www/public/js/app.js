@@ -15,7 +15,7 @@ App.controller('AppController', AppController);
 App.controller('AgendaController', ['$http', AgendaController]);
 App.controller('CalendarController', ['$http', CalendarController]);
 App.controller('LoginController', LoginController);
-App.controller('RegisterController', RegisterController);
+App.controller('RegisterController', ['$http', RegisterController]);
 
 App.config(['$routeProvider',
 function($routeProvider, AppController){
