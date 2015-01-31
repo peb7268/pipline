@@ -15,7 +15,6 @@ var AgendaController = function($http, $scope){
         });
     };
 
-
     this.setDate = function($el){
         var date = new Date();
         var formatted_date = date.toDateString().split(' ').splice(1, 3).join(', ').replace(',', '', 1);

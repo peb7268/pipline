@@ -18,7 +18,7 @@ block body
                     i.fa.fa-chevron-right
 
         form#addTodo
-            input(type="text", placeholder="New todo..", autofocus, ng-keydown="AgendaCtrl.addTodo()")
+            input(type="text", placeholder="New todo..", ng-keydown="AgendaCtrl.addTodo()")
 
 
         li.item(ng-repeat="item in AgendaCtrl.items", data-id="{{item.id}}")

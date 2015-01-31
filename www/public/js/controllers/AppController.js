@@ -6,6 +6,8 @@ var RegisterController          = require('./RegisterController');
 var controllers = {};
 
 controllers.AppController = function($scope){
+    this.init       = function(){};
+
     this.toggleMenu = function(){
     	var $el = $(event.target);
     	if(event.target.nodeName != 'I') $el = $el.find('i');
@@ -13,6 +15,7 @@ controllers.AppController = function($scope){
 
     	$('#nav ul').slideToggle(100);
     };
+
 };
 
 controllers.CalendarController  = CalendarController;

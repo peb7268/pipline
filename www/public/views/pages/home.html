@@ -9,11 +9,9 @@
         <li><a href="#/login">Login</a></li>
       </ul>
     </li>
-    <!--li#search
-    //input(type="text", name="search", value="Search")
-    //i.fa.fa-search
-    
-    -->
+    <li id="search">
+      <input type="text" name="search" value="Search" autofocus="autofocus"/><i class="fa fa-search"></i>
+    </li>
   </ul>
   <section class="wrapper">
     <ul id="canvas" ng-controller="CalendarController as CalCtrl">
@@ -28,7 +26,7 @@
         </ul>
       </div>
       <form id="addTodo">
-        <input type="text" placeholder="New todo.." autofocus="autofocus" ng-keydown="AgendaCtrl.addTodo()"/>
+        <input type="text" placeholder="New todo.." ng-keydown="AgendaCtrl.addTodo()"/>
       </form>
       <li ng-repeat="item in AgendaCtrl.items" data-id="{{item.id}}" class="item"><a ng-click="AgendaCtrl.toggleItemControls()">{{item.title}}</a><a ng-click="AgendaCtrl.setTodoFinished()" class="delete"><i class="fa fa-trash-o"></i></a></li>
     </ul>

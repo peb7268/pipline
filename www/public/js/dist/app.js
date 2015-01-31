@@ -10189,7 +10189,6 @@ var AgendaController = function($http, $scope){
         });
     };
 
-
     this.setDate = function($el){
         var date = new Date();
         var formatted_date = date.toDateString().split(' ').splice(1, 3).join(', ').replace(',', '', 1);
@@ -10289,6 +10288,8 @@ var RegisterController          = require('./RegisterController');
 var controllers = {};
 
 controllers.AppController = function($scope){
+    this.init       = function(){};
+
     this.toggleMenu = function(){
     	var $el = $(event.target);
     	if(event.target.nodeName != 'I') $el = $el.find('i');
@@ -10296,6 +10297,7 @@ controllers.AppController = function($scope){
 
     	$('#nav ul').slideToggle(100);
     };
+
 };
 
 controllers.CalendarController  = CalendarController;
@@ -10307,12 +10309,10 @@ module.exports = controllers;
 
 },{"./AgendaController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/AgendaController.js","./CalendarController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/CalendarController.js","./LoginController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/LoginController.js","./RegisterController":"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/RegisterController.js"}],"/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/controllers/CalendarController.js":[function(require,module,exports){
 var CalendarController = function($scope){
-    console.log('CalendarController');
 
     this.init = function(){
         var self = this;
         this.daysInMonth = this.getNumberOfDays();
-        // self.paintCalendar($('#canvas'), new Date);
     };
 
     this.getNumberOfDays = function(m, y) {

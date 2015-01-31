@@ -1,10 +1,8 @@
 var CalendarController = function($scope){
-    console.log('CalendarController');
 
     this.init = function(){
         var self = this;
         this.daysInMonth = this.getNumberOfDays();
-        // self.paintCalendar($('#canvas'), new Date);
     };
 
     this.getNumberOfDays = function(m, y) {
