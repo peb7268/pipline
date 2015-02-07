@@ -1,12 +1,6 @@
 extends ./layout.jade
 
 block body
-    //Temp mock, later will bind the uid to the view while logged in or put it in local storage
-    script.
-        App = (typeof App != 'undefined') ? App : {};
-        App.user = {};
-        App.user.id = 7;
-
 
     ul#canvas(ng-controller="CalendarController as CalCtrl")
         li.day(ng-repeat="days in CalCtrl.daysInMonth", ng-class="{today: $index == (CalCtrl.getToday() - 1)}") {{ $index + 1 }}
