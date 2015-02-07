@@ -10,8 +10,9 @@ html(lang="en", ng-app="App")
 		script(src="./js/dist/bundle.js")
 		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js")
 
+		base(href="/")
 	body(ng-controller='AppController as AppCtrl')
-		#App(ng-view)
+		ui-view
 			|@yield('body')
 
 

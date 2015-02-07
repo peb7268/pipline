@@ -31,5 +31,7 @@
     "vinyl-source-stream": "^1.0.0",
     "vinyl-buffer": "^1.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "angular-ui-router": "^0.2.13"
+  }
 }

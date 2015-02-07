@@ -1,6 +1,14 @@
 extends ./layout.jade
 
+//When the user log's in it will create a user object and store the uid in local storage
+
 block body
+    script.
+        App = (typeof App != 'undefined') ? App : {};
+        App.user = {};
+        App.user.id = 7;
+
+
     ul#canvas(ng-controller="CalendarController as CalCtrl")
         li.day(ng-repeat="days in CalCtrl.daysInMonth", ng-class="{today: $index == (CalCtrl.getToday() - 1)}") {{ $index + 1 }}
             a(data-day_index="{{ $index }}")

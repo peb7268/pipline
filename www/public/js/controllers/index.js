@@ -1,4 +1,29 @@
-var App = angular.module('App', ['ngRoute']);
+var App = angular.module('App', [require('angular-ui-router/release/angular-ui-router')]).config(function($stateProvider){
+    //$locationProvider.html5Mode(true);
+    //$locationProvider.hashPrefix('!');
+
+    $stateProvider.state('home', {
+        url: '/',
+        templateUrl: './views/pages/home.html',
+        controller: require('./AgendaController.js')
+    });
+
+    $stateProvider.state('login', {
+        url: '/login',
+        templateUrl: './views/pages/login.html',
+        controller: require('./LoginController.js')
+    });
+
+    $stateProvider.state('register', {
+        url: '/register',
+        templateUrl: './views/pages/register.html',
+        controller: require('./RegisterController.js')
+    });
+});
+
+var CalendarService     = require('../services/CalendarService.js');
+
+App.factory('CalendarService', ['$http', CalendarService]);
 
 
 var AppController       = require('./AppController');

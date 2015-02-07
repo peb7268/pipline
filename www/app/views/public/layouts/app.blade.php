@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     <script src="./js/dist/bundle.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <base href="/">
   </head>
   <body ng-controller="AppController as AppCtrl">
-    <div id="App" ng-view>@yield('body')</div>
+    <ui-view>@yield('body')</ui-view>
   </body>
 </html>

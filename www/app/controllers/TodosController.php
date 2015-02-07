@@ -85,5 +85,36 @@ class TodosController extends \BaseController {
         return "Item $id has been destroyed.";
 	}
 
+    //API Endpoints
+    public function fetchTodosByYMD($uid, $y, $m, $d)
+    {
+        $numArgs = func_num_args();
 
+        switch($numArgs){
+            case 1:
+                $todos = $this->fetchTodosForUser($uid);
+            break;
+            case 2:
+                $todos = $this->fetchTodosForUserByYear($uid, $y);
+            break;
+            case 2:
+                $todos = $this->fetchTodosForUserByYearByMo($uid, $y, $m);
+            break;
+            case 4:
+                $todos = $this->fetchTodosForUserByYearByMoByDay($uid, $y, $m, $d);
+            break;
+        }
+
+        return $todos;
+    }
+
+    public function fetchTodosForUserByYearByMoByDay($uid, $y, $m, $d)
+    {
+        return Todo::where(function($query) use($uid, $y, $m, $d){
+            $query->where('user_id', $uid)
+                  ->where('year', $y)
+                  ->where('month', $m)
+                  ->where('day', $d);
+        })->get();
+    }
 }

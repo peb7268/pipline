@@ -25,4 +25,6 @@ Route::group(array('prefix' => 'api/v1/'), function(){
     Route::resource('appointment', 'AppointmentController');
     Route::resource('users', 'UsersController');
     Route::resource('todos', 'TodosController');
+
+    Route::get('todos/{username}/{year?}/{month?}/{day?}', 'TodosController@fetchTodosByYMD');
 });

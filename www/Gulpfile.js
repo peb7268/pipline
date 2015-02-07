@@ -1,6 +1,7 @@
 var gulp            = require('gulp');
 var elixir          = require('laravel-elixir');
-var jade            = require('laravel-elixir-jade');   //Does the blade jade
+
+require('laravel-elixir-jade');
 require('laravel-elixir-browserify');
 
 var paths = {
@@ -19,13 +20,23 @@ gulp.task('_jade', function() {
 });
 
 elixir(function(mix) {
-    mix.jade({
-        "baseDir": "./app/views",
-        "dest": "/public/",
-        "pretty": true,
-        "search": "**/*.jade",
-        "src": "/jade/"
-    })
+    //mix.jade({
+    //    "baseDir": "./app/views",
+    //    "dest": "/public/",
+    //    "pretty": true,
+    //    "search": "**/*.jade",
+    //    "blade": true,
+    //    "src": "/jade/"
+    //})
+    mix.sass()
+    .browserify("public/js/app.js",{
+        debug: true,
+        insertGlobals: true,
+        output: "public/js/dist",
+        rename: 'bundle.js'
+    });
+
+    //FE Jade, can only have be or fe uncommented at once.
     mix.jade({
         "baseDir": "./public/views",
         "dest": "/pages/",
@@ -33,13 +44,6 @@ elixir(function(mix) {
         "blade": false,
         "search": "**/*.jade",
         "src": "/jade/"
-    })
-    .sass()
-    .browserify("public/js/app.js",{
-        debug: true,
-        insertGlobals: true,
-        output: "public/js/dist",
-        rename: 'bundle.js'
     });
 });
 

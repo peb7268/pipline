@@ -14,6 +14,13 @@
     </li>
   </ul>
   <section class="wrapper">
+    <script>
+      App = (typeof App != 'undefined') ? App : {};
+      App.user = {};
+      App.user.id = 7;
+      
+      
+    </script>
     <ul id="canvas" ng-controller="CalendarController as CalCtrl">
       <li ng-repeat="days in CalCtrl.daysInMonth" ng-class="{today: $index == (CalCtrl.getToday() - 1)}" class="day">{{ $index + 1 }}<a data-day_index="{{ $index }}"></a><span class="todoCount"></span><span class="completed"></span></li>
     </ul>
