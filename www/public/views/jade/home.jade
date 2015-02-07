@@ -1,8 +1,7 @@
 extends ./layout.jade
 
-//When the user log's in it will create a user object and store the uid in local storage
-
 block body
+    //Temp mock, later will bind the uid to the view while logged in or put it in local storage
     script.
         App = (typeof App != 'undefined') ? App : {};
         App.user = {};
@@ -29,7 +28,7 @@ block body
             input(type="text", placeholder="New todo..", ng-keydown="AgendaCtrl.addTodo()")
 
 
-        li.item(ng-repeat="item in AgendaCtrl.items", data-id="{{item.id}}")
+        li.item(ng-repeat="item in AppCtrl.items | filter:query", data-id="{{item.id}}")
             a(ng-click='AgendaCtrl.toggleItemControls()') {{item.title}}
             a.delete(ng-click='AgendaCtrl.setTodoFinished()')
                 i.fa.fa-trash-o

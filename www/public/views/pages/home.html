@@ -4,16 +4,17 @@
     <li id="menu" ng-click="AppCtrl.toggleMenu()"><i class="fa fa-bars"></i></li>
     <li id="nav">
       <ul>
-        <li><a href="#/home">Home</a></li>
+        <li><a href="#/">Home</a></li>
         <li><a href="#/register">Register</a></li>
         <li><a href="#/login">Login</a></li>
       </ul>
     </li>
     <li id="search">
-      <input type="text" name="search" value="Search" autofocus="autofocus" ng-model="AppCtrl.items"/><i class="fa fa-search"></i>
+      <input type="text" name="search" value="Search" autofocus="autofocus" ng-model="query"/><i class="fa fa-search"></i>
     </li>
   </ul>
   <section class="wrapper">
+    <!--Temp mock, later will bind the uid to the view while logged in or put it in local storage-->
     <script>
       App = (typeof App != 'undefined') ? App : {};
       App.user = {};
@@ -35,7 +36,7 @@
       <form id="addTodo">
         <input type="text" placeholder="New todo.." ng-keydown="AgendaCtrl.addTodo()"/>
       </form>
-      <li ng-repeat="item in AgendaCtrl.items" data-id="{{item.id}}" class="item"><a ng-click="AgendaCtrl.toggleItemControls()">{{item.title}}</a><a ng-click="AgendaCtrl.setTodoFinished()" class="delete"><i class="fa fa-trash-o"></i></a></li>
+      <li ng-repeat="item in AppCtrl.items | filter:query" data-id="{{item.id}}" class="item"><a ng-click="AgendaCtrl.toggleItemControls()">{{item.title}}</a><a ng-click="AgendaCtrl.setTodoFinished()" class="delete"><i class="fa fa-trash-o"></i></a></li>
     </ul>
     <script type="text/template" id="controlsTemplate">
       <ul id="controls" style="display: none;">
