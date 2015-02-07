@@ -1,18 +1,10 @@
-var AgendaController = function($http, $scope){
+var AgendaController = function($http, CalendarService, $scope){
     this.$http  = $http;
-    this.items  = [];
+    this.orderList = "title"
 
     this.init = function(){
         var self = this;
-
-        self.setDate($('#daySelector > ul li.date'))
-        self.$http.get('/api/v1/todos')
-            .success(function(data, status, headers, config) {
-                self.items = data;
-            })
-            .error(function(data, status, headers, config) {
-                console.error(status, data);
-        });
+        self.setDate($('#daySelector > ul li.date'));
     };
 
     this.setDate = function($el){

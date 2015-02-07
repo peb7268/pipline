@@ -1,12 +1,15 @@
-var AgendaController            = require('./AgendaController');
-var CalendarController          = require('./CalendarController');
-var LoginController             = require('./LoginController');
-var RegisterController          = require('./RegisterController');
+var AppController = function(CalendarService){
+    this.items = [];
 
-var controllers = {};
-
-controllers.AppController = function($scope){
-    this.init       = function(){};
+    this.init = function(){
+        var self = this;
+        CalendarService.req.success(function(data, status, headers, config) {
+            self.items = data;
+        })
+        .error(function(data, status, headers, config) {
+            console.error(status, data);
+        });
+    };
 
     this.toggleMenu = function(){
     	var $el = $(event.target);
@@ -16,11 +19,8 @@ controllers.AppController = function($scope){
     	$('#nav ul').slideToggle(100);
     };
 
+    this.init()
+
 };
 
-controllers.CalendarController  = CalendarController;
-controllers.AgendaController    = AgendaController;
-controllers.LoginController     = LoginController;
-controllers.RegisterController  = RegisterController;
-
-module.exports = controllers;
+module.exports = AppController;

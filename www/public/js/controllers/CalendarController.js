@@ -1,4 +1,4 @@
-var CalendarController = function($scope){
+var CalendarController = function($http, CalendarService, $scope){
 
     this.init = function(){
         var self = this;

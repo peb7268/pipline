@@ -1,1 +1,0 @@
-console.error("Error: Cannot find module '/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www/public/js/main.js' from '/Users/peb7268/Desktop/dev/vagrant/play/pipeline/www'")
