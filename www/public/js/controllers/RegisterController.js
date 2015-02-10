@@ -1,16 +1,16 @@
 var RegisterController = function($http, $scope){
     this.$http  = $http;
 
-    this.isLongEnough = function(pwd){
+    function isLongEnough(pwd){
         return pwd.length > 4;
     }
-    
+
     $scope.$watch('user.password', function(newVal, oldVal){
         if(! newVal) return;
 
         $scope.reqs = [];
 
-        if(! this.isLongEnough(newVal)){
+        if(! isLongEnough(newVal)){
             $scope.reqs.push('Password is too short.')
         }
 

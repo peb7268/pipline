@@ -36,7 +36,7 @@ App.controller('AppController', AppController);
 App.controller('AgendaController', ['$http', 'CalendarService', AgendaController]);
 App.controller('CalendarController', ['$http', 'CalendarService', CalendarController]);
 App.controller('LoginController', LoginController);
-App.controller('RegisterController', ['$http', RegisterController]);
+App.controller('RegisterController', ['$http', '$scope', RegisterController]);
 
 
 module.exports = App;
