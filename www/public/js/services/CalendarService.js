@@ -3,33 +3,53 @@ var CalendarService = function($http){
     var self    = this;
     var evt;
 
-    var user_id = App.user.id;
-    var year    = getYear(evt, window.location);
-    var month   = getMonth(evt, window.location);
-    var day     = getDay(evt, window.location);
+    var user_id;
+    var year;
+    var month;
+    var day;
 
-    var endpoint =  constructEndpoint();
+    var endpoint;
+    var request;
 
-    var request = $http.get(endpoint);
 
     /***
     * Constructs an endpoint for fetching todos
      * params window.location, evt
     * */
-    function constructEndpoint(event, loc){
+    self.constructEndpoint = function(evt, loc){
         var endpoint         = '/api/v1/todos';
-        if(typeof user_id   != undefined) endpoint += '/' + user_id;
-        if(typeof year      != undefined) endpoint += '/' + year;
-        if(typeof month     != undefined) endpoint += '/' + month;
-        if(typeof day       != undefined) endpoint += '/' + day;
+        if(typeof user_id   != undefined) endpoint += '/' +  App.user.id;
+        if(typeof year      != undefined) endpoint += '/' +  getYear(evt, window.location);
+        if(typeof month     != undefined) endpoint += '/' +  getMonth(evt, window.location);
+        if(typeof day       != undefined) endpoint += '/' +  getDay(evt, window.location);
 
         console.log(endpoint);
-        debugger;
         return endpoint;
     };
 
+    function retrieveDateFromEvent(evt, part){
+        var part;
+
+        switch(part){
+            case 'year':
+               part = $(evt.target).data('year');
+            break
+
+            case 'month':
+                part = $(evt.target).data('month');
+            break
+
+            case 'day':
+                part = $(evt.target).data('day') + 1;
+            break
+        }
+
+        return part;
+    }
+
     function retrieveDateFromUrl(loc, part){
         var part;
+        console.log('retrieveDateFromUrl:part', part);
 
         switch(part){
             case 'year':
@@ -70,11 +90,15 @@ var CalendarService = function($http){
         return day;
     }
 
+    endpoint =  this.constructEndpoint();
+    request  = $http.get(endpoint);
+
     return {
         req: request,
         items: function(){
             return items;
-        }
+        },
+        constructEndpoint: this.constructEndpoint
     };
 };
 

@@ -1,5 +1,21 @@
-var RegisterController = function($http){
+var RegisterController = function($http, $scope){
     this.$http  = $http;
+
+    this.isLongEnough = function(pwd){
+        return pwd.length > 4;
+    }
+    
+    $scope.$watch('user.password', function(newVal, oldVal){
+        if(! newVal) return;
+
+        $scope.reqs = [];
+
+        if(! this.isLongEnough(newVal)){
+            $scope.reqs.push('Password is too short.')
+        }
+
+        $scope.showReqs = $scope.reqs.length;
+    });
 
     this.submitForm = function(){
       var self    = this;

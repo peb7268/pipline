@@ -4,7 +4,7 @@ block body
 
     ul#canvas(ng-controller="CalendarController as CalCtrl")
         li.day(ng-repeat="days in CalCtrl.daysInMonth", ng-class="{today: $index == (CalCtrl.getToday() - 1)}") {{ $index + 1 }}
-            a(data-day_index="{{ $index }}")
+            a(data-day_index="{{ $index }}", data-month="{{item.month}}", data-year="{{item.year}}", ng-click="CalCtrl.selectDay($event)")
             span.todoCount
             span.completed
 
