@@ -1,14 +1,28 @@
 var RegisterController = function($http, $scope){
     this.$http  = $http;
+    $scope.reqs = [];
 
     function isLongEnough(pwd){
         return pwd.length > 4;
     }
 
+    function passwordsMatch(newVal){
+        return newVal.length > 4;
+    }
+
+    $scope.$watch('user.password2', function(password){
+        if(! password) return;
+        var pw2 = null;
+
+        if(! passwordsMatch(password, pw2)){
+            $scope.reqs.push('Passwords do not match.');
+        }
+
+        $scope.showReqs = $scope.reqs2.length;
+    });
+
     $scope.$watch('user.password', function(newVal, oldVal){
         if(! newVal) return;
-
-        $scope.reqs = [];
 
         if(! isLongEnough(newVal)){
             $scope.reqs.push('Password is too short.')

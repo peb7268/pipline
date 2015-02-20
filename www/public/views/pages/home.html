@@ -1,4 +1,3 @@
-
 <body>
   <ul id="toolbar">
     <li id="menu" ng-click="AppCtrl.toggleMenu()"><i class="fa fa-bars"></i></li>
@@ -17,6 +16,7 @@
     <ul id="canvas" ng-controller="CalendarController as CalCtrl">
       <li ng-repeat="days in CalCtrl.daysInMonth" ng-class="{today: $index == (CalCtrl.getToday() - 1)}" class="day">{{ $index + 1 }}<a data-day_index="{{ $index }}" data-month="{{item.month}}" data-year="{{item.year}}" ng-click="CalCtrl.selectDay($event)"></a><span class="todoCount"></span><span class="completed"></span></li>
     </ul>
+
     <ul id="agenda" ng-controller="AgendaController as AgendaCtrl">
       <div id="daySelector">
         <ul>

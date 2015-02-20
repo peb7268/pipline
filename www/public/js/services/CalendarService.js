@@ -18,12 +18,12 @@ var CalendarService = function($http){
     * */
     self.constructEndpoint = function(evt, loc){
         var endpoint         = '/api/v1/todos';
+
         if(typeof user_id   != undefined) endpoint += '/' +  App.user.id;
         if(typeof year      != undefined) endpoint += '/' +  getYear(evt, window.location);
         if(typeof month     != undefined) endpoint += '/' +  getMonth(evt, window.location);
         if(typeof day       != undefined) endpoint += '/' +  getDay(evt, window.location);
 
-        console.log(endpoint);
         return endpoint;
     };
 
@@ -40,7 +40,7 @@ var CalendarService = function($http){
             break
 
             case 'day':
-                part = $(evt.target).data('day') + 1;
+                part = ($(evt.target).data('day_index') + 1);
             break
         }
 
@@ -83,21 +83,36 @@ var CalendarService = function($http){
 
     function getDay(evt){
         var day;
-        if(typeof evt != 'undefined' && evt.type == 'click') day = retrieveDateFromEvent(evt, 'day');
-        day = new Date().getUTCDate();
+        if(typeof evt != 'undefined' && evt.type == 'click') {
+            day = retrieveDateFromEvent(evt, 'day');
+        } else {
+            day = new Date().getUTCDate();
+        }
+
         if(typeof day == 'undefined'){ throw new Error('Oops, Couldn\'t resolve month.'); return false; }
 
         return day;
     }
 
-    endpoint =  this.constructEndpoint();
-    request  = $http.get(endpoint);
+    /*
+    * Fetches data for a day based off of the endpoint
+    */
+    this.fetchDayData = function(endpoint, $http){
+        return $http.get(endpoint);
+    }
+
+    endpoint = this.constructEndpoint();
+    request  = this.fetchDayData(endpoint, $http);
 
     return {
         req: request,
         items: function(){
             return items;
         },
+        setItems: function(newItems){
+            items = newItems;
+        },
+        fetch: this.fetchDayData,
         constructEndpoint: this.constructEndpoint
     };
 };

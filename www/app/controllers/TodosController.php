@@ -111,10 +111,21 @@ class TodosController extends \BaseController {
     public function fetchTodosForUserByYearByMoByDay($uid, $y, $m, $d)
     {
         return Todo::where(function($query) use($uid, $y, $m, $d){
+            $y = (integer) $y;
+            $m = (integer) $m;
+            $d = (integer) $d;
+
             $query->where('user_id', $uid)
                   ->where('year', $y)
                   ->where('month', $m)
-                  ->where('day', $d);
+                  ->where('day', $d)
+
+                  ->orWhere('user_id', $uid)
+                  ->where('status', 0)
+                  ->where('roll_over', 1)
+                  ->where('year', '<=', $y)
+                  ->where('month', '<=', $m)
+                  ->where('day', '<=', $d);
         })->get();
     }
 }

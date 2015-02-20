@@ -1,5 +1,4 @@
 var CalendarController = function($http, CalendarService, $scope){
-    var that = this;
     this.CalendarService = CalendarService;
 
     this.init = function(){
@@ -7,12 +6,23 @@ var CalendarController = function($http, CalendarService, $scope){
         this.daysInMonth = this.getNumberOfDays();
     };
 
-    this.selectDay = function($event){
-      var self = this;
-      var endpoint = this.CalendarService.constructEndpoint($event);
+    this.selectDay  = function($event){
+      var self      = this;
+      var endpoint  = this.CalendarService.constructEndpoint($event);
 
+      this.update(endpoint, $http);
       console.log('endpoint: ', endpoint);
+
       //call refresh on the cal service passing an endpoint to refresh the day w new data
+    };
+
+    this.update = function(endpoint, $http){
+        var self      = this;
+
+        this.CalendarService.fetch(endpoint, $http).success(function(data){
+            self.CalendarService.setItems(data);
+            debugger;
+        });
     };
 
     this.getNumberOfDays = function(m, y) {
