@@ -10,7 +10,7 @@ var CalendarService = function($http, $rootScope){
     var endpoint;
     var request;
     var $scope      = $rootScope;
-    $scope.items    = [{title: 'default1', status: 0}, {title: 'default2', status: 0}];
+    $scope.items    = [];
     var items       = $scope.items;
 
     /***
@@ -28,6 +28,33 @@ var CalendarService = function($http, $rootScope){
         return endpoint;
     };
 
+    function addTodo(event){
+        var self        = this;
+        var $el         = $(event.target);
+
+        //Set a YMD for new created items.
+        var $today      = $('.today a');
+        var day         = $today.data('day_index');
+        var month       = $today.data('month');
+        var year        = $today.data('year');
+
+        var item        = { title: $el.val(), status: 0, day: day, month: month, year: year, user_id: App.user.id };
+
+        $scope.items.push(item);
+        $el.val('');
+
+        $http.post('/api/v1/todos', item)
+        .success(function(data, status, headers, config) {
+                console.log(status, data);
+            })
+        .error(function(data, status, headers, config) {
+                console.log(status, data);
+            });
+    };
+
+    /**
+     * Sets the entire items model
+     */
     function setItems(items){
       $scope.items = items;
     };
@@ -45,7 +72,7 @@ var CalendarService = function($http, $rootScope){
             break
 
             case 'day':
-                part = ($(evt.target).data('day_index') + 1);
+                part = ($(evt.target).data('day_index'));
             break
         }
 
@@ -122,8 +149,10 @@ var CalendarService = function($http, $rootScope){
 
     return {
         init: init,
+        scope: $scope,
         items: $scope.items,
         setItems: setItems,
+        addTodo: addTodo,
         fetch: fetchDayData,
         constructEndpoint: constructEndpoint
     };

@@ -1,9 +1,10 @@
 var CalendarController = function($http, CalendarService){
-    this.CalendarService = CalendarService;
+    this.CalendarService    = CalendarService;
+    this.outstanding_todos  = 0;
 
     this.init = function(){
         var self = this;
-        this.daysInMonth = this.getNumberOfDays();
+        this.daysInMonth = this.getDays();
     };
 
     this.selectDay  = function($event){
@@ -17,20 +18,27 @@ var CalendarController = function($http, CalendarService){
 
     this.update = function(endpoint, $http){
         var self      = this;
-        console.log('endpoint: ', endpoint);
-        
         this.CalendarService.fetch(endpoint, $http).success(function(data){
-            console.log(data);
             self.CalendarService.setItems(data);
         });
     };
 
-    this.getNumberOfDays = function(m, y) {
+    /**
+     * Returns an array of day objects
+     **/
+    this.getDays = function(m, y) {
+        var date         = new Date;
     	var numOfDays    = /4|6|9|11/.test(m)?30:m==2?(!(y%4)&&y%100)||!(y%400)?29:28:31;
     	var days         = [];
-    	for(var i = 0; i < numOfDays; i++){
-    		var d = i + 1;
-    		days.push(d);
+
+        for(var i = 0; i < numOfDays; i++){
+            var day = {
+                day : i + 1,
+                month: date.getMonth() + 1,
+                year: date.getUTCFullYear()
+            };
+
+    		days.push(day);
     	}
     	
         return days;

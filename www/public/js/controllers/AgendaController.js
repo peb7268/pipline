@@ -1,6 +1,7 @@
 var AgendaController = function($http, CalendarService, $scope){
     this.$http  = $http;
     this.orderList = "title"
+    this.CalendarService = CalendarService;
 
     this.init = function(){
         var self = this;
@@ -10,7 +11,6 @@ var AgendaController = function($http, CalendarService, $scope){
     this.setDate = function($el){
         var date = new Date();
         var formatted_date = date.toDateString().split(' ').splice(1, 3).join(', ').replace(',', '', 1);
-
         $el.html(formatted_date);
     };
 
@@ -33,19 +33,7 @@ var AgendaController = function($http, CalendarService, $scope){
     this.addTodo  = function(){
         var self = this;
         if(event.which != 13) return false;
-        var $el         = $(event.target);
-        var item        = { title: $el.val(), status: 0 };
-
-        this.items.push(item);
-        $el.val('');
-
-        self.$http.post('/api/v1/todos', item)
-            .success(function(data, status, headers, config) {
-                console.log(status, data);
-            })
-            .error(function(data, status, headers, config) {
-                console.log(status, data);
-        });
+        self.CalendarService.addTodo(event);
     };
 
     this.deleteTodo  = function(id){
@@ -73,7 +61,6 @@ var AgendaController = function($http, CalendarService, $scope){
         if(isCompleted){
             $item.fadeOut(100, function(){
                 var id = $(this).data('id');
-                self.items.splice(id, 1);
                 $(this).remove();
                 self.deleteTodo(id);
             });
