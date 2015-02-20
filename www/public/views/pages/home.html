@@ -28,7 +28,7 @@
       <form id="addTodo">
         <input type="text" placeholder="New todo.." ng-keydown="AgendaCtrl.addTodo()"/>
       </form>
-      <li ng-repeat="item in AppCtrl.items | filter:query" data-id="{{item.id}}" class="item"><a ng-click="AgendaCtrl.toggleItemControls()">{{item.title}}</a><a ng-click="AgendaCtrl.setTodoFinished()" class="delete"><i class="fa fa-trash-o"></i></a></li>
+      <li ng-repeat="item in items | filter:query" data-id="{{item.id}}" class="item"><a ng-click="AgendaCtrl.toggleItemControls()">{{item.title}}</a><a ng-click="AgendaCtrl.setTodoFinished()" class="delete"><i class="fa fa-trash-o"></i></a></li>
     </ul>
     <script type="text/template" id="controlsTemplate">
       <ul id="controls" style="display: none;">
