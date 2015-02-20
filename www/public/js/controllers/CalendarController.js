@@ -9,12 +9,18 @@ var CalendarController = function($http, CalendarService){
     this.selectDay  = function($event){
       var self      = this;
       var endpoint  = this.CalendarService.constructEndpoint($event);
+
+      $('.today').removeClass('today');
+      $($event.target).parent().addClass('today');
       this.update(endpoint, $http);
     };
 
     this.update = function(endpoint, $http){
         var self      = this;
+        console.log('endpoint: ', endpoint);
+        
         this.CalendarService.fetch(endpoint, $http).success(function(data){
+            console.log(data);
             self.CalendarService.setItems(data);
         });
     };

@@ -29,7 +29,6 @@ var CalendarService = function($http, $rootScope){
     };
 
     function setItems(items){
-      console.log('setting items: ', items);
       $scope.items = items;
     };
 
@@ -112,7 +111,6 @@ var CalendarService = function($http, $rootScope){
         request  = fetchDayData(endpoint, $http);
 
         request.success(function(data, status, headers, config) {
-            console.log('successfully fetched cal data on init: ', data);
             $scope.items = data;
         })
         .error(function(data, status, headers, config) {
