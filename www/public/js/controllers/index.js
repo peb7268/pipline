@@ -23,7 +23,7 @@ var App = angular.module('App', [require('angular-ui-router/release/angular-ui-r
 
 var CalendarService     = require('../services/CalendarService.js');
 
-App.factory('CalendarService', ['$http', CalendarService]);
+App.factory('CalendarService', ['$http', '$rootScope', CalendarService]);
 
 
 var AppController       = require('./AppController');

@@ -1,5 +1,4 @@
-var CalendarService = function($http){
-    var items   = [];
+var CalendarService = function($http, $rootScope){
     var self    = this;
     var evt;
 
@@ -10,13 +9,15 @@ var CalendarService = function($http){
 
     var endpoint;
     var request;
-
+    var $scope      = $rootScope;
+    $scope.items    = [{title: 'default1', status: 0}, {title: 'default2', status: 0}];
+    var items       = $scope.items;
 
     /***
     * Constructs an endpoint for fetching todos
      * params window.location, evt
     * */
-    self.constructEndpoint = function(evt, loc){
+    function constructEndpoint(evt, loc){
         var endpoint         = '/api/v1/todos';
 
         if(typeof user_id   != undefined) endpoint += '/' +  App.user.id;
@@ -25,6 +26,11 @@ var CalendarService = function($http){
         if(typeof day       != undefined) endpoint += '/' +  getDay(evt, window.location);
 
         return endpoint;
+    };
+
+    function setItems(items){
+      console.log('setting items: ', items);
+      $scope.items = items;
     };
 
     function retrieveDateFromEvent(evt, part){
@@ -97,23 +103,31 @@ var CalendarService = function($http){
     /*
     * Fetches data for a day based off of the endpoint
     */
-    this.fetchDayData = function(endpoint, $http){
+    function fetchDayData(endpoint, $http){
         return $http.get(endpoint);
     }
 
-    endpoint = this.constructEndpoint();
-    request  = this.fetchDayData(endpoint, $http);
+    function init(){
+        endpoint = constructEndpoint();
+        request  = fetchDayData(endpoint, $http);
+
+        request.success(function(data, status, headers, config) {
+            console.log('successfully fetched cal data on init: ', data);
+            $scope.items = data;
+        })
+        .error(function(data, status, headers, config) {
+            console.error(status, data);
+        });
+
+
+    };
 
     return {
-        req: request,
-        items: function(){
-            return items;
-        },
-        setItems: function(newItems){
-            items = newItems;
-        },
-        fetch: this.fetchDayData,
-        constructEndpoint: this.constructEndpoint
+        init: init,
+        items: $scope.items,
+        setItems: setItems,
+        fetch: fetchDayData,
+        constructEndpoint: constructEndpoint
     };
 };
 
