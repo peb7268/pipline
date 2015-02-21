@@ -1,13 +1,12 @@
 var CalendarController = function($http, CalendarService){
     this.CalendarService    = CalendarService;
     this.outstanding_todos  = 0;
-    this.days               = [{name: 'Monday'}, {name: 'Tuesday'}, {name: 'Wednesday'}, {name: 'Thursday'}, {name: 'Friday'}, {name: 'Saturday'}];
+    this.days               = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     this.init = function(){
         var self = this;
         this.daysInMonth  = this.getDays();
         this.weeksInMonth = this.getWeeks(this.daysInMonth);
-        console.log('weeks in month: ', this.weeksInMonth);
     };
 
     this.selectDay  = function($event){
@@ -16,7 +15,27 @@ var CalendarController = function($http, CalendarService){
 
       $('.today').removeClass('today');
       $($event.target).parent().addClass('today');
+
+      var y = $('.today a').data('year');
+      var m = $('.today a').data('month') - 1;
+      var d = $('.today a').data('day_index');
+
+      this.setDate($('#daySelector .date'), y, m, d);
       this.update(endpoint, $http);
+    };
+
+    /**
+     * Sets the date to today unless the y, m, d params are passed. Then it sets it to that date.
+     * y: 2000 - 2099
+     * m: 0 - 11 where 11 is dec
+     * d: day of month
+     *
+     **/
+    this.setDate = function($el, y, m, d){
+        var date = (typeof y != 'undefined' && typeof m != 'undefined' && typeof d != 'undefined') ? new Date(y, m, d) : new Date;
+
+        var formatted_date = date.toDateString().split(' ').splice(1, 3).join(', ').replace(',', '', 1);
+        $el.html(formatted_date);
     };
 
     this.update = function(endpoint, $http){

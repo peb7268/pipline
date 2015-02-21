@@ -432,10 +432,24 @@ form#addTodo {
   padding: 0;
   background: #dce5f4;
   border-left: 1px solid #5d6a7f;
-  border-top: 1px solid #5d6a7f;
+//  border-top: 1px solid #5d6a7f;
 
   table {
     width: 100%;
+    #weekdays {
+      th {
+        border-top: 1px solid darken(#143c00, 20%);
+        border-bottom: 1px solid darken(#143c00, 20%);
+        border-right: 1px solid darken(#143c00, 20%);
+        background: rgba(0, 62, 178, 0.4);
+        color: #efefef;
+        text-align: center;
+        padding: 7px;
+        box-sizing: border-box;
+        font-weight: normal;
+        width: 100px;
+      }
+    }
     .day {
       padding: 7px;
       box-sizing: border-box;

@@ -8,8 +8,20 @@ var AgendaController = function($http, CalendarService, $scope){
         self.setDate($('#daySelector > ul li.date'));
     };
 
-    this.setDate = function($el){
-        var date = new Date();
+    //this.updateDay = function(){
+    //  debugger;
+    //};
+
+    /**
+     * Sets the date to today unless the y, m, d params are passed. Then it sets it to that date.
+     * y: 0 - 99
+     * m: 0 - 11 where 11 is dec
+     * d: day of month
+     *
+     **/
+    this.setDate = function($el, y, m, d){
+        var date = (typeof y != 'undefined' && typeof m != 'undefined' && typeof d != 'undefined') ? new Date(y, m, d) : new Date;
+
         var formatted_date = date.toDateString().split(' ').splice(1, 3).join(', ').replace(',', '', 1);
         $el.html(formatted_date);
     };

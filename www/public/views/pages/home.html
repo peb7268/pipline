@@ -15,11 +15,11 @@
   <section class="wrapper">
     <section id="canvas">
         <table id="calendar" ng-controller="CalendarController as CalCtrl">
-            <!--<thead>-->
-                <!--<tr>-->
-                    <!--<th ng-repeat="dayName in CalCtrl.days">{{ dayName.name }}</th>-->
-                <!--</tr>-->
-            <!--</thead>-->
+            <thead>
+                <tr id="weekdays">
+                    <th ng-repeat="weekday in CalCtrl.days">{{ weekday }}</th>
+                </tr>
+            </thead>
             <tr ng-repeat="week in CalCtrl.weeksInMonth">
               <td ng-repeat="day in week" ng-class="{today: day.day == (CalCtrl.getToday())}" class="day">
                   {{ day.day }}
@@ -35,7 +35,7 @@
       <div id="daySelector">
         <ul>
           <li class="prev"><i class="fa fa-chevron-left"></i></li>
-          <li class="date"></li>
+          <li class="date" ng-click="AgendaCtrl.updateDay()"></li>
           <li class="next"><i class="fa fa-chevron-right"></i></li>
         </ul>
       </div>
