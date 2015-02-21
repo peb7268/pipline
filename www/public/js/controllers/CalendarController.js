@@ -6,6 +6,7 @@ var CalendarController = function($http, CalendarService){
         var self = this;
         this.daysInMonth  = this.getDays();
         this.weeksInMonth = this.getWeeks(this.daysInMonth);
+        console.log('weeks in month: ', this.weeksInMonth);
     };
 
     this.selectDay  = function($event){
@@ -56,13 +57,26 @@ var CalendarController = function($http, CalendarService){
 
       for(var day = 0; day < daysInMonth.length; day++){
         week.push(daysInMonth[day]);
+        //console.log('day: ', day);
 
-        if((day + 1) % 6 == 0) {
+        //Every 7 days push a week onto the array and start with a fresh week.
+        if((day + 1) % 7 == 0) {
+            //console.log('week ended: ', (day + 1) % 7 == 0);
+            //console.log("\n\n");
+
             weeks.push(week);
             week  = [];
         }
+
+        //If its the last week start a new week
+        if((daysInMonth.length - day) < 8){}
+
+        //After / on the last day push the accumulated week onto the weeks array.
+        if((daysInMonth.length == (day - 1))){
+          weeks.push(week);
+        }
       }
-        
+
       return weeks;
     };
 

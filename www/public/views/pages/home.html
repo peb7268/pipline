@@ -14,12 +14,14 @@
   </ul>
   <section class="wrapper">
     <table id="canvas" ng-controller="CalendarController as CalCtrl">
-          <td ng-repeat="day in CalCtrl.daysInMonth" ng-class="{today: $index == (CalCtrl.getToday() - 1)}" class="day">
+        <tr ng-repeat="week in CalCtrl.weeksInMonth">
+          <td ng-repeat="day in week" ng-class="{today: day.day == (CalCtrl.getToday())}" class="day">
               {{ day.day }}
               <a data-day_index="{{ day.day }}" data-month="{{day.month}}" data-year="{{day.year}}" ng-click="CalCtrl.selectDay($event)"></a>
               <span class="todoCount" style="color: orange; float: right;"></span>
               <span class="completed"></span>
           </td>
+        </tr>
     </table>
 
     <ul id="agenda" ng-controller="AgendaController as AgendaCtrl">

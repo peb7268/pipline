@@ -37,13 +37,13 @@ elixir(function(mix) {
     });
 
     //FE Jade, can only have be or fe uncommented at once.
-    mix.jade({
-        "baseDir": "./public/views",
-        "dest": "/pages/",
-        "pretty": true,
-        "blade": false,
-        "search": "**/*.jade",
-        "src": "/jade/"
-    });
+    //mix.jade({
+    //    "baseDir": "./public/views",
+    //    "dest": "/pages/",
+    //    "pretty": true,
+    //    "blade": false,
+    //    "search": "**/*.jade",
+    //    "src": "/jade/"
+    //});
 });
 
