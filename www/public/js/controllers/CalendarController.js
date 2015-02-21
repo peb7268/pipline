@@ -4,7 +4,8 @@ var CalendarController = function($http, CalendarService){
 
     this.init = function(){
         var self = this;
-        this.daysInMonth = this.getDays();
+        this.daysInMonth  = this.getDays();
+        this.weeksInMonth = this.getWeeks(this.daysInMonth);
     };
 
     this.selectDay  = function($event){
@@ -24,13 +25,15 @@ var CalendarController = function($http, CalendarService){
     };
 
     /**
-     * Returns an array of day objects
+     * Returns an array of day objects for each day in the month
      **/
-    this.getDays = function(m, y) {
+    this.getDays = function(m, y){
         var date         = new Date;
-    	var numOfDays    = /4|6|9|11/.test(m)?30:m==2?(!(y%4)&&y%100)||!(y%400)?29:28:31;
-    	var days         = [];
+        var m            = m || date.getMonth() + 1;
+        var y            = y || date.getUTCFullYear();
+    	var numOfDays    = new Date(y, m, 0).getDate();
 
+        var days         = [];
         for(var i = 0; i < numOfDays; i++){
             var day = {
                 day : i + 1,
@@ -42,6 +45,25 @@ var CalendarController = function($http, CalendarService){
     	}
     	
         return days;
+    };
+
+    /**
+     * Returns an array of arrays each containing a week of the month
+     **/
+    this.getWeeks   = function(daysInMonth){
+      var weeks     = [];
+      var week      = [];
+
+      for(var day = 0; day < daysInMonth.length; day++){
+        week.push(daysInMonth[day]);
+
+        if((day + 1) % 6 == 0) {
+            weeks.push(week);
+            week  = [];
+        }
+      }
+        
+      return weeks;
     };
 
     this.getToday       = function(date){
