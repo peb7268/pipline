@@ -13,16 +13,23 @@
     </li>
   </ul>
   <section class="wrapper">
-    <table id="canvas" ng-controller="CalendarController as CalCtrl">
-        <tr ng-repeat="week in CalCtrl.weeksInMonth">
-          <td ng-repeat="day in week" ng-class="{today: day.day == (CalCtrl.getToday())}" class="day">
-              {{ day.day }}
-              <a data-day_index="{{ day.day }}" data-month="{{day.month}}" data-year="{{day.year}}" ng-click="CalCtrl.selectDay($event)"></a>
-              <span class="todoCount" style="color: orange; float: right;"></span>
-              <span class="completed"></span>
-          </td>
-        </tr>
-    </table>
+    <section id="canvas">
+        <table id="calendar" ng-controller="CalendarController as CalCtrl">
+            <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th ng-repeat="dayName in CalCtrl.days">{{ dayName.name }}</th>-->
+                <!--</tr>-->
+            <!--</thead>-->
+            <tr ng-repeat="week in CalCtrl.weeksInMonth">
+              <td ng-repeat="day in week" ng-class="{today: day.day == (CalCtrl.getToday())}" class="day">
+                  {{ day.day }}
+                  <a data-day_index="{{ day.day }}" data-month="{{day.month}}" data-year="{{day.year}}" ng-click="CalCtrl.selectDay($event)"></a>
+                  <span class="todoCount" style="color: orange; float: right;"></span>
+                  <span class="completed"></span>
+              </td>
+            </tr>
+        </table>
+    </section>
 
     <ul id="agenda" ng-controller="AgendaController as AgendaCtrl">
       <div id="daySelector">

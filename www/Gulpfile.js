@@ -11,13 +11,13 @@ var paths = {
     sass: 'public/sass/**/*.scss'
 };
 
-gulp.task('_jade', function() {
-    gulp.src(paths.jade)
-        .pipe(_jade({
-            pretty: true
-        }))
-        .pipe(gulp.dest(paths.views))
-});
+//gulp.task('_jade', function() {
+//    gulp.src(paths.jade)
+//        .pipe(_jade({
+//            pretty: true
+//        }))
+//        .pipe(gulp.dest(paths.views))
+//});
 
 elixir(function(mix) {
     //mix.jade({
@@ -28,13 +28,13 @@ elixir(function(mix) {
     //    "blade": true,
     //    "src": "/jade/"
     //})
-    mix.sass()
-    .browserify("public/js/app.js",{
-        debug: true,
-        insertGlobals: true,
-        output: "public/js/dist",
-        rename: 'bundle.js'
-    });
+    mix.sass();
+    //.browserify("public/js/app.js",{
+    //    debug: true,
+    //    insertGlobals: true,
+    //    output: "public/js/dist",
+    //    rename: 'bundle.js'
+    //});
 
     //FE Jade, can only have be or fe uncommented at once.
     //mix.jade({

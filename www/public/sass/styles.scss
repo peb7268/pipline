@@ -434,29 +434,33 @@ form#addTodo {
   border-left: 1px solid #5d6a7f;
   border-top: 1px solid #5d6a7f;
 
-  li { text-align: left; }
-  .day {
-    width: 100px;
-    height: 100px;
-    float: left;
-    padding: 7px;
-    box-sizing: border-box;
-    border-right: 1px solid #5d6a7f;
-    border-bottom: 1px solid #5d6a7f;
-    position: relative;
-    z-index: 1;
-    
-    a {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 10;
-      &:hover { cursor: pointer; }
-    }
-    &.selected {
-      background: rgb(238, 244, 255);
+  table {
+    width: 100%;
+    .day {
+      padding: 7px;
+      box-sizing: border-box;
+      vertical-align: top;
+      text-align: left;
+      border-right: 1px solid #5d6a7f;
+      border-bottom: 1px solid #5d6a7f;
+      position: relative;
+      z-index: 1;
+      height: 100px;
+
+      a {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      &.selected {
+        background: rgb(238, 244, 255);
+      }
     }
   }
 }

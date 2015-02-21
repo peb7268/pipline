@@ -1,6 +1,7 @@
 var CalendarController = function($http, CalendarService){
     this.CalendarService    = CalendarService;
     this.outstanding_todos  = 0;
+    this.days               = [{name: 'Monday'}, {name: 'Tuesday'}, {name: 'Wednesday'}, {name: 'Thursday'}, {name: 'Friday'}, {name: 'Saturday'}];
 
     this.init = function(){
         var self = this;
