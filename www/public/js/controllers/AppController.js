@@ -1,6 +1,10 @@
 var AppController = function(CalendarService){
-    CalendarService.init();
-    this.items = CalendarService.items;
+    var that = this;
+    var dataFetch = CalendarService.init();
+
+    dataFetch.success(function(){
+        that.items = CalendarService.items;
+    });
 
     this.toggleMenu = function(){
     	var $el = $(event.target);

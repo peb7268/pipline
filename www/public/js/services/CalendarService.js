@@ -1,5 +1,4 @@
-var CalendarService = function($http, $rootScope){
-    var self    = this;
+var CalendarService = function($http){
     var evt;
 
     var user_id;
@@ -9,9 +8,7 @@ var CalendarService = function($http, $rootScope){
 
     var endpoint;
     var request;
-    var $scope      = $rootScope;
-    $scope.items    = [];
-    var items       = $scope.items;
+    this.items    = [];
 
     /***
     * Constructs an endpoint for fetching todos
@@ -40,7 +37,7 @@ var CalendarService = function($http, $rootScope){
 
         var item        = { title: $el.val(), status: 0, day: day, month: month, year: year, user_id: App.user.id };
 
-        $scope.items.push(item);
+        this.items.push(item);
         $el.val('');
 
         $http.post('/api/v1/todos', item)
@@ -56,7 +53,7 @@ var CalendarService = function($http, $rootScope){
      * Sets the entire items model
      */
     function setItems(items){
-      $scope.items = items;
+      this.items = items;
     };
 
     function retrieveDateFromEvent(evt, part){
@@ -134,23 +131,23 @@ var CalendarService = function($http, $rootScope){
     }
 
     function init(){
+        var self = this;
         endpoint = constructEndpoint();
         request  = fetchDayData(endpoint, $http);
 
-        request.success(function(data, status, headers, config) {
-            $scope.items = data;
+        request.success(function(data, status, headers, config){
+            self.items = data;
         })
         .error(function(data, status, headers, config) {
             console.error(status, data);
         });
 
-
+        return request;
     };
-
+    
     return {
         init: init,
-        scope: $scope,
-        items: $scope.items,
+        items: this.items,
         setItems: setItems,
         addTodo: addTodo,
         fetch: fetchDayData,
