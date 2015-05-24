@@ -1,13 +1,5 @@
 var CalendarService = function($http){
     var evt;
-
-    var user_id;
-    var year;
-    var month;
-    var day;
-
-    var endpoint;
-    var request;
     this.items    = [];
 
     /***
@@ -144,7 +136,7 @@ var CalendarService = function($http){
 
         return request;
     };
-    
+
     return {
         init: init,
         items: this.items,
